@@ -1,0 +1,3099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Protocol & Algorithm Simulator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script src="sfx.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+</head>
+
+<body>
+
+  <!-- TITLE BAR -->
+  <div class="tbar">
+    <div class="tl">
+      <div class="tlogo">⟨ψ⟩</div>
+      <span class="ttitle">Quantum Algorithm And Protocol Simulator — SRM Institute of Science & Technology</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+
+      <!-- ONLY REAL LOGO -->
+      <img src="icon.webp" alt="SRM Logo" style="
+    height:52px;
+    border-radius:10px;
+    background:white;
+    padding:5px;
+    box-shadow:0 0 10px rgba(0,0,0,0.25);
+    transition:0.3s;
+  " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+
+    </div>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tabbar">
+    <div class="tab active" data-panel="p-home">Home</div>
+    <div class="tab" data-panel="p-exp">Modules</div>
+    <div class="tab" onclick="showSection('hardware')">Hardware</div>
+    <div class="tab" data-panel="p-about">About</div>
+    <div class="tab" data-panel="p-feedback">Feedback</div>
+  </div>
+
+  <!-- ═══════ HOME PANEL ═══════ -->
+  <div class="panel active" id="p-home">
+    <div style="flex:1;overflow-y:auto;background:#0a1628;">
+
+      <!-- Hero Section -->
+      <div
+        style="background:radial-gradient(circle at top left,rgba(79,195,247,0.18),transparent 55%),radial-gradient(circle at bottom right,rgba(99,102,241,0.15),transparent 55%),linear-gradient(135deg,#0a1628 0%,#1a3060 50%,#0d2044 100%);padding:60px 40px 50px;text-align:center;position:relative;overflow:hidden;border-bottom:2px solid #2a4a8e;">
+        <!-- Animated background particles -->
+        <div
+          style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(42,109,217,0.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(99,179,237,0.1) 0%,transparent 50%);pointer-events:none;">
+        </div>
+
+        <!-- Animated Atom Visual -->
+        <div
+          style="position:relative;width:100px;height:100px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;">
+          <!-- Nucleus glow -->
+          <div class="atom-nucleus"></div>
+          <!-- Orbits -->
+          <div class="atom-orbit orbit-1"></div>
+          <div class="atom-orbit orbit-2"></div>
+          <div class="atom-orbit orbit-3"></div>
+          <!-- Electron dots -->
+          <div class="electron e1"></div>
+          <div class="electron e2"></div>
+          <div class="electron e3"></div>
+        </div>
+
+        <h1 style="font-size:32px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-0.5px;line-height:1.2;">
+          Quantum Protocol And Algorithm Simulator</h1>
+        <p style="font-size:14px;color:rgba(200,220,255,0.75);margin-bottom:6px;font-weight:500;">An Interactive
+          Learning Platform for Quantum Computing</p>
+        <p style="font-size:11px;color:rgba(150,180,220,0.55);margin-bottom:32px;letter-spacing:0.5px;">SRM Institute of
+          Science & Technology · Department of Electronics and Communication Engineering</p>
+        <button onclick="goToExperiments()" class="hero-cta-btn">
+          Start Learning
+        </button>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+          <span style="font-size:11px;color:rgba(150,180,220,0.5);letter-spacing:0.5px;">↓ Scroll to explore</span>
+        </div>
+      </div>
+
+      <!-- Problem Statement -->
+      <div style="max-width:760px;margin:36px auto;padding:0 32px;">
+        <div class="why-box"
+          style="background:linear-gradient(135deg,#1a2a4a,#1a3060);border:1px solid rgba(99,179,237,0.25);border-left:4px solid #4fc3f7;border-radius:14px;padding:26px 28px;">
+          <div
+            style="font-size:12px;font-weight:700;color:#63b3ed;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">
+            📌 Why This Lab?</div>
+          <p style="font-size:13px;color:rgba(220,235,255,0.85);line-height:1.85;margin:0 0 14px;">
+            Understanding quantum computing concepts like <strong style="color:#63b3ed;">superposition</strong>, <strong
+              style="color:#68d391;">entanglement</strong>, and <strong style="color:#b794f4;">quantum
+              protocols</strong> is difficult due to the lack of interactive visual tools. This virtual lab bridges that
+            gap.
+          </p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(200,225,255,0.8);">
+              <span style="color:#4fc3f7;font-size:14px;font-weight:700;">✔</span>
+              <span>Visual simulations that make quantum concepts intuitive</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(200,225,255,0.8);">
+              <span style="color:#68d391;font-size:14px;font-weight:700;">✔</span>
+              <span>Step-by-step guided learning with theory & MCQs</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(200,225,255,0.8);">
+              <span style="color:#b794f4;font-size:14px;font-weight:700;">✔</span>
+              <span>Hands-on experiments — no setup, runs in your browser</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div style="max-width:760px;margin:0 auto 36px;padding:0 32px;">
+        <div
+          style="font-size:13px;font-weight:700;color:rgba(200,220,255,0.7);text-align:center;margin-bottom:18px;text-transform:uppercase;letter-spacing:1px;">
+          What You'll Learn</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+          <!-- Card 1: Quantum Basics -->
+          <div onclick="goToExperiments();loadModule('basics')"
+            style="background:linear-gradient(135deg,#1a2a4a,#1e3360);border:1px solid rgba(99,179,237,0.2);border-radius:12px;padding:22px 18px;cursor:pointer;transition:all 0.25s;"
+            onmouseover="this.style.borderColor='rgba(99,179,237,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(42,109,217,0.25)';"
+            onmouseout="this.style.borderColor='rgba(99,179,237,0.2)';this.style.transform='translateY(0)';this.style.boxShadow='none';">
+            <div style="font-size:28px;margin-bottom:8px;"></div>
+            <div style="font-size:13px;font-weight:700;color:#e8eef8;margin-bottom:8px;">Quantum Basics</div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#4fc3f7;">›</span> Classical vs Quantum Systems</div>
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#4fc3f7;">›</span> Quantum Gates</div>
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#4fc3f7;">›</span> Bloch Sphere</div>
+            </div>
+          </div>
+          <!-- Card 2: Quantum Protocols -->
+          <div onclick="goToExperiments();loadModule('protocols')"
+            style="background:linear-gradient(135deg,#1a2a4a,#1e3360);border:1px solid rgba(104,211,145,0.2);border-radius:12px;padding:22px 18px;cursor:pointer;transition:all 0.25s;"
+            onmouseover="this.style.borderColor='rgba(104,211,145,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(39,174,96,0.2)';"
+            onmouseout="this.style.borderColor='rgba(104,211,145,0.2)';this.style.transform='translateY(0)';this.style.boxShadow='none';">
+            <div style="font-size:28px;margin-bottom:8px;"></div>
+            <div style="font-size:13px;font-weight:700;color:#e8eef8;margin-bottom:8px;">Quantum Protocols</div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#68d391;">›</span> BB84 Key Distribution</div>
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#68d391;">›</span> E91 Protocol</div>
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#68d391;">›</span> Eavesdropping Detection</div>
+            </div>
+          </div>
+          <!-- Card 3: Quantum Algorithms -->
+          <div onclick="goToExperiments();loadModule('algorithms')"
+            style="background:linear-gradient(135deg,#1a2a4a,#1e3360);border:1px solid rgba(183,148,244,0.2);border-radius:12px;padding:22px 18px;cursor:pointer;transition:all 0.25s;"
+            onmouseover="this.style.borderColor='rgba(183,148,244,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(142,68,173,0.2)';"
+            onmouseout="this.style.borderColor='rgba(183,148,244,0.2)';this.style.transform='translateY(0)';this.style.boxShadow='none';">
+            <div style="font-size:28px;margin-bottom:8px;"></div>
+            <div style="font-size:13px;font-weight:700;color:#e8eef8;margin-bottom:8px;">Quantum Algorithms</div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#b794f4;">›</span> Superposition</div>
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#b794f4;">›</span> Entanglement</div>
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#b794f4;">›</span> Quantum Teleportation</div>
+              <div style="font-size:10.5px;color:rgba(150,180,220,0.75);display:flex;align-items:center;gap:5px;"><span
+                  style="color:#b794f4;">›</span> No-Cloning Theorem</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Details -->
+      <div style="max-width:760px;margin:36px auto;padding:0 32px;text-align:center;">
+        <h2 style="color:#63b3ed;font-size:24px;margin-bottom:10px;">Problem no: 21</h2>
+        <h3 style="color:#e8eef8;font-size:20px;margin-bottom:20px;">Problem Name : Quantum Protocol & Algorithm
+          Simulator</h3>
+
+        <h3
+          style="color:#e74c3c;font-size:22px;margin-bottom:15px;text-transform:uppercase;letter-spacing:1px;font-weight:700;">
+          Team Details</h3>
+
+        <div
+          style="background:linear-gradient(135deg,#1a2a4a,#1a3060);border:1px solid rgba(99,179,237,0.25);border-radius:14px;padding:26px 28px;text-align:left;display:inline-block;width:100%;">
+          <table style="width:100%;color:rgba(220,235,255,0.85);font-size:16px;line-height:1.8;">
+            <tr>
+              <td style="font-weight:700;color:#63b3ed;width:40%;">Team Name</td>
+              <td>: EntangleX</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;color:#63b3ed;">Department Name</td>
+              <td>: Electronics and Communication Engineering</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;color:#63b3ed;">Campus Name</td>
+              <td>: SRMIST Kattankulathur</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;color:#63b3ed;">Team Size</td>
+              <td>: 04</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Quick stats bar -->
+      <div
+        style="background:rgba(255,255,255,0.04);border-top:1px solid rgba(99,179,237,0.15);border-bottom:1px solid rgba(99,179,237,0.15);padding:18px 40px;display:flex;justify-content:center;gap:60px;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-size:22px;font-weight:800;color:#63b3ed;">5+</div>
+          <div style="font-size:10px;color:rgba(150,180,220,0.55);text-transform:uppercase;letter-spacing:0.5px;">Live
+            Simulations</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:22px;font-weight:800;color:#68d391;">9</div>
+          <div style="font-size:10px;color:rgba(150,180,220,0.55);text-transform:uppercase;letter-spacing:0.5px;">Theory
+            Sections</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:22px;font-weight:800;color:#b794f4;">3</div>
+          <div style="font-size:10px;color:rgba(150,180,220,0.55);text-transform:uppercase;letter-spacing:0.5px;">MCQ
+            Difficulty Levels</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:22px;font-weight:800;color:#f6e05e;">∞</div>
+          <div style="font-size:10px;color:rgba(150,180,220,0.55);text-transform:uppercase;letter-spacing:0.5px;">Random
+            Quiz Sets</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ EXPERIMENTS PANEL ═══════ -->
+  <div class="panel" id="p-exp">
+    <div class="main">
+
+      <!-- LEFT -->
+      <div class="left">
+        <div>
+          <div class="sh">Virtual Lab</div>
+          <div class="expl" id="moduleNav">
+            <div class="expi active" id="nav-basics" onclick="loadModule('basics')">Basics of Quantum Computing</div>
+            <div class="expi" id="nav-algorithms" onclick="loadModule('algorithms')">Quantum Algorithms</div>
+            <div class="expi" id="nav-protocols" onclick="loadModule('protocols')">Quantum Protocols</div>
+          </div>
+        </div>
+
+        <!-- Learning Panel -->
+        <div>
+          <div class="sh">Quick Facts</div>
+          <div
+            style="background:#fff;border:1px solid var(--bd);border-radius:6px;padding:9px 11px;display:flex;flex-direction:column;gap:5px;">
+            <div style="font-size:9.5px;color:var(--tm);display:flex;align-items:flex-start;gap:5px;"><span
+                style="color:var(--sky);font-weight:700;">•</span> Qubits can exist in superposition of 0 and 1</div>
+            <div style="font-size:9.5px;color:var(--tm);display:flex;align-items:flex-start;gap:5px;"><span
+                style="color:var(--sky);font-weight:700;">•</span> Measurement collapses the quantum state</div>
+            <div style="font-size:9.5px;color:var(--tm);display:flex;align-items:flex-start;gap:5px;"><span
+                style="color:var(--sky);font-weight:700;">•</span> No-cloning theorem prevents copying qubits</div>
+            <div style="font-size:9.5px;color:var(--tm);display:flex;align-items:flex-start;gap:5px;"><span
+                style="color:var(--sky);font-weight:700;">•</span> Entanglement links qubits across any distance</div>
+          </div>
+        </div>
+
+        <!-- Try This Next -->
+        <div>
+          <div class="sh">Try This Next</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div onclick="loadModule('algorithms');openAlgo('super')"
+              style="background:#fff;border:1px solid var(--bd);border-radius:5px;padding:6px 9px;font-size:10px;font-weight:600;color:var(--sky);cursor:pointer;transition:all 0.2s;"
+              onmouseover="this.style.background='#eef4ff';" onmouseout="this.style.background='#fff';">→ Explore
+              Superposition</div>
+            <div onclick="loadModule('algorithms');openAlgo('tele')"
+              style="background:#fff;border:1px solid var(--bd);border-radius:5px;padding:6px 9px;font-size:10px;font-weight:600;color:var(--sky);cursor:pointer;transition:all 0.2s;"
+              onmouseover="this.style.background='#eef4ff';" onmouseout="this.style.background='#fff';">→ Run
+              Teleportation Simulation</div>
+            <div onclick="loadModule('protocols');openProtocol('bb84')"
+              style="background:#fff;border:1px solid var(--bd);border-radius:5px;padding:6px 9px;font-size:10px;font-weight:600;color:var(--sky);cursor:pointer;transition:all 0.2s;"
+              onmouseover="this.style.background='#eef4ff';" onmouseout="this.style.background='#fff';">→ Try BB84
+              Protocol</div>
+          </div>
+        </div>
+
+        <!-- Tip of the Day -->
+        <div>
+          <div class="sh">Tip of the Day</div>
+          <div
+            style="background:linear-gradient(135deg,#eef4ff,#f0faff);border:1px solid rgba(42,109,217,0.2);border-radius:6px;padding:8px 10px;">
+            <div id="tipOfDay" style="font-size:10px;color:var(--tm);line-height:1.6;font-style:italic;"></div>
+          </div>
+        </div>
+
+        <!-- BB84 config — hidden by default, shown only for exp 3 -->
+        <div id="bb84cfg" style="display:none;">
+          <div class="sh">Configuration</div>
+          <div class="lbl">Message from Alice <span class="tt"><span class="tti">?</span><span class="ttb">A–Z only, max
+                10 chars. Each letter = 8 photons!</span></span></div>
+          <input class="ci" id="msgIn" type="text" maxlength="10" value="HELLO" oninput="onMsgInput(this)">
+          <div class="errmsg" id="msgErr">⚠ Only A–Z letters allowed!</div>
+
+          <div class="lbl">Alice's Polariser Angle <span class="tt"><span class="tti">?</span><span
+                class="ttb">0°/90°=straight(+basis). 45°/135°=diagonal(×basis).</span></span></div>
+          <div class="pol-btns" id="polBtns">
+            <div class="pol-btn active" onclick="setPolAngle(0,this)">0° ↑</div>
+            <div class="pol-btn" onclick="setPolAngle(45,this)">45° ↗</div>
+            <div class="pol-btn" onclick="setPolAngle(90,this)">90° ↔</div>
+            <div class="pol-btn" onclick="setPolAngle(135,this)">135° ↖</div>
+          </div>
+
+          <div class="lbl">Eve Interference <span class="tt"><span class="tti">?</span><span class="ttb">Eve intercepts
+                photons. QBER &gt;11% reveals eavesdropping.</span></span></div>
+          <div class="slrow">
+            <input class="sl" type="range" id="noiseSl" min="0" max="50" value="0" oninput="onNoiseChange(this)">
+            <span class="slv" id="noiseVal">0%</span>
+          </div>
+          <div class="evewarn" id="eveWarn">Eavesdropping detected!<br>Error rate &gt; 11% — channel unsafe.</div>
+        </div>
+
+        <button class="rbtn" id="runBtn" onclick="onRunClick()" style="display:none;">▶ Run Experiment</button>
+
+        <div id="progressBlock" style="display:none;">
+          <div class="sh">Progress</div>
+          <div class="steprows">
+            <div class="strow">
+              <div class="sdot" id="sd1">1</div>
+              <div class="stxt" id="st1">Alice encodes bits</div>
+            </div>
+            <div class="strow">
+              <div class="sdot" id="sd2">2</div>
+              <div class="stxt" id="st2">Photons transmitted</div>
+            </div>
+            <div class="strow">
+              <div class="sdot" id="sd3">3</div>
+              <div class="stxt" id="st3">Bob measures</div>
+            </div>
+            <div class="strow">
+              <div class="sdot" id="sd4">4</div>
+              <div class="stxt" id="st4">Matching step (sifting)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- E91 LEFT PANEL CONFIG -->
+        <div id="e91cfg" style="display:none;">
+          <div class="sh">E91 Configuration</div>
+
+          <!-- Input mode -->
+          <div class="lbl">Input Mode</div>
+          <div class="mode-row">
+            <button class="mode-btn active" id="e91ModeText" onclick="setE91InputMode('text')">Text</button>
+            <button class="mode-btn" id="e91ModeFile" onclick="setE91InputMode('file')">File</button>
+          </div>
+
+          <!-- Text mode -->
+          <div id="e91TextSection">
+            <div class="lbl" style="margin-top:6px;">Secret Message (Alice)</div>
+            <input class="ci" id="e91MsgIn" type="text" maxlength="12" value="HELLO" placeholder="Type message..."
+              oninput="e91OnMsgInput()">
+          </div>
+
+          <!-- File mode -->
+          <div id="e91FileSection" style="display:none;">
+            <div class="lbl" style="margin-top:6px;">File Type</div>
+            <select id="e91FileType" class="ci" style="font-family:'Poppins',sans-serif;font-size:11px;"
+              onchange="e91UpdateFileAccept(this)">
+              <option value="image">Image (.png, .jpg, .gif, .webp)</option>
+              <option value="audio">Audio (.mp3, .wav, .ogg, .m4a)</option>
+              <option value="text">Text File (.txt, .csv, .json)</option>
+            </select>
+            <div class="lbl" style="margin-top:5px;">Upload File</div>
+            <input type="file" id="e91FileInput" accept="image/*" style="width:100%;font-size:9px;padding:4px;
+        background:#fff;border:1px solid var(--bd);border-radius:5px;cursor:pointer;" onchange="e91HandleFile(this)">
+            <div id="e91FileStatus" style="font-size:8.5px;color:var(--tl);margin-top:3px;line-height:1.5;">
+              No file selected
+            </div>
+            <label
+              style="display:flex;align-items:center;gap:5px;font-size:9px;color:var(--tm);margin-top:4px;cursor:pointer;">
+              <input type="checkbox" id="e91FullFile"> Simulate full file (slow)
+            </label>
+          </div>
+
+          <!-- Entangled pairs -->
+          <div class="lbl" style="margin-top:6px;">Entangled Pairs: <strong id="e91PairCount">3</strong></div>
+          <div class="slrow">
+            <input class="sl" type="range" id="e91PairSl" min="1" max="3" value="3" oninput="e91OnPairs(this)">
+            <span class="slv" id="e91PairsVal">3</span>
+          </div>
+          <div id="e91PairsNote" style="font-size:8px;color:var(--tl);margin-top:1px;">Using 3 pairs (sufficient for
+            demo)</div>
+
+          <!-- Eve toggle -->
+          <div class="lbl">Eve Eavesdropper</div>
+          <div class="mode-row">
+            <button class="mode-btn active" id="e91EveOff" onclick="e91SetEve(false)"
+              style="background:var(--sky);color:#fff;">OFF</button>
+            <button class="mode-btn" id="e91EveOn" onclick="e91SetEve(true)">ON</button>
+          </div>
+
+          <!-- Noise -->
+          <div class="lbl">Channel Noise</div>
+          <div class="slrow">
+            <input class="sl" type="range" id="e91NoiseSl" min="0" max="40" value="0" oninput="e91OnNoise(this)">
+            <span class="slv" id="e91NoiseVal">0%</span>
+          </div>
+
+          <!-- Animation speed -->
+          <div class="lbl">Animation Speed</div>
+          <div class="slrow">
+            <input class="sl" type="range" id="e91SpeedSl" min="1" max="4" value="2" oninput="e91OnSpeed(this)">
+            <span class="slv" id="e91SpeedVal">Normal</span>
+          </div>
+
+          <!-- Beginner Mode -->
+          <div class="lbl">Beginner Mode <span style="font-size:8px;color:var(--tl);">(tooltips + micro-steps)</span>
+          </div>
+          <div class="mode-row">
+            <button class="mode-btn active" id="e91BegOn" onclick="e91SetBeginner(true)"
+              style="background:var(--mint);color:#fff;">ON</button>
+            <button class="mode-btn" id="e91BegOff" onclick="e91SetBeginner(false)">OFF</button>
+          </div>
+
+          <!-- AI Explanation toggle -->
+          <div class="lbl">AI Explanation <span style="font-size:8px;color:var(--tl);">(step professor mode)</span>
+          </div>
+          <div class="mode-row">
+            <button class="mode-btn active" id="e91ExplOn" onclick="e91SetExplain(true)">ON</button>
+            <button class="mode-btn" id="e91ExplOff" onclick="e91SetExplain(false)">OFF</button>
+          </div>
+
+          <!-- Bell value card -->
+          <div style="background:#fff;border:1px solid var(--bd);border-radius:6px;
+      padding:7px 10px;margin-top:6px;">
+            <div style="font-size:9px;color:var(--tl);margin-bottom:2px;">
+              Bell Inequality |S|
+              <span class="tt"><span class="tti">?</span>
+                <span class="ttb">|S| > 2 = quantum entanglement confirmed, channel secure.
+                  |S| ≤ 2 = classical limit, Eve may be present.</span>
+              </span>
+            </div>
+            <div id="e91BellVal" style="font-size:20px;font-weight:800;color:var(--mint);">2.83</div>
+            <div id="e91BellStatus" style="font-size:8.5px;color:var(--mint);">
+              Quantum Secure (|S| > 2)
+            </div>
+          </div>
+
+          <!-- Progress -->
+          <div class="sh" style="margin-top:8px;">Progress</div>
+          <div class="steprows">
+            <div class="strow">
+              <div class="sdot" id="e91s1">1</div>
+              <div class="stxt" id="e91t1">Classical Channel</div>
+            </div>
+            <div class="strow">
+              <div class="sdot" id="e91s2">2</div>
+              <div class="stxt" id="e91t2">Generate Entangled Pairs</div>
+            </div>
+            <div class="strow">
+              <div class="sdot" id="e91s3">3</div>
+              <div class="stxt" id="e91t3">Measure & Sift Key</div>
+            </div>
+            <div class="strow">
+              <div class="sdot" id="e91s4">4</div>
+              <div class="stxt" id="e91t4">XOR Encrypt & Transmit</div>
+            </div>
+            <div class="strow">
+              <div class="sdot" id="e91s5">5</div>
+              <div class="stxt" id="e91t5">Decrypt & Reconstruct</div>
+            </div>
+          </div>
+
+          <!-- Step-by-step buttons — INSIDE e91cfg so they hide with it -->
+          <div class="sh" style="margin-top:6px;">Step Controls</div>
+          <div style="display:flex;flex-direction:column;gap:3px;" id="e91StepBtnWrap">
+            <button id="e91Btn1" class="rbtn" style="font-size:10px;padding:6px 8px;text-align:left;"
+              onclick="e91NextStep(1)">1. Establish Channel</button>
+            <button id="e91Btn2" class="rbtn" style="font-size:10px;padding:6px 8px;text-align:left;opacity:.35;"
+              onclick="e91NextStep(2)" disabled>2. Generate Pairs</button>
+            <button id="e91Btn3" class="rbtn" style="font-size:10px;padding:6px 8px;text-align:left;opacity:.35;"
+              onclick="e91NextStep(3)" disabled>3. Measure</button>
+            <button id="e91Btn4" class="rbtn" style="font-size:10px;padding:6px 8px;text-align:left;opacity:.35;"
+              onclick="e91NextStep(4)" disabled>4. Encrypt &amp; Send</button>
+            <button id="e91Btn5" class="rbtn" style="font-size:10px;padding:6px 8px;text-align:left;opacity:.35;"
+              onclick="e91NextStep(5)" disabled>5. Decrypt</button>
+          </div>
+          <button style="background:#fff;border:1px solid var(--bd);border-radius:7px;padding:7px;
+      font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;color:var(--tm);
+      cursor:pointer;width:100%;margin-top:4px;" id="e91ResetBtn" onclick="e91Reset()">↺ Reset E91</button>
+
+        </div><!-- end e91cfg -->
+
+      </div><!-- end .left -->
+
+      <!-- CENTER -->
+      <div class="cen" id="cenMain">
+
+        <!-- MODULE CONTENT — Virtual Lab dynamic UI -->
+        <div id="moduleContent"
+          style="display:none;flex:1;flex-direction:column;overflow-y:auto;padding:22px 24px;background:#fff;transition:opacity 0.25s ease;">
+        </div>
+
+        <!-- BB84 View — now experiment 3, hidden by default -->
+        <div id="view-bb84" style="display:none;flex-direction:column;height:100%;overflow:hidden;">
+          <div class="ctitle">
+            <span id="expTitle">BB84 Quantum Key Distribution</span>
+            <span id="simStatus" style="font-size:9.5px;color:var(--tl);">Idle</span>
+          </div>
+          <div class="story-banner" id="storyBanner">
+            <span></span>
+            <span id="storyTxt">Alice wants to send a <strong>secret message</strong> to Bob. She encodes each letter as
+              quantum photons. Even if Eve intercepts them — she'll be caught!</span>
+          </div>
+          <div class="stage" id="stage">
+            <canvas id="ac"></canvas>
+            <div class="ptag" id="ptag">Ready — press Run Experiment</div>
+            <div class="leg">
+              <div class="li">
+                <div class="ld" style="background:#fc8181"></div>Alice
+              </div>
+              <div class="li">
+                <div class="ld" style="background:#e67e22"></div>Alice's Polariser
+              </div>
+              <div class="li">
+                <div class="ld" style="background:#4a99e8"></div>Bob's Polariser
+              </div>
+              <div class="li">
+                <div class="ld" style="background:#68d391"></div>Bob
+              </div>
+              <div class="li">
+                <div class="ld" style="background:#b794f4"></div>Photon
+              </div>
+            </div>
+          </div>
+          <div class="encsec">
+            <div class="enctitle">Per-Bit Encoding Table <span
+                style="font-size:9px;color:var(--tl);font-weight:400">(click row for explanation)</span></div>
+            <table class="etbl">
+              <thead>
+                <tr>
+                  <th>Char</th>
+                  <th>Bit#</th>
+                  <th>Bit</th>
+                  <th>Alice Basis</th>
+                  <th>State</th>
+                  <th>Dir</th>
+                  <th>Bob Basis</th>
+                  <th>Match?</th>
+                </tr>
+              </thead>
+              <tbody id="encBody"></tbody>
+            </table>
+          </div>
+          <div class="exp-callout" id="expCallout">
+            <h4 id="expCallTitle"></h4>
+            <p id="expCallText"></p>
+          </div>
+          <div class="logsec">
+            <div class="logtitle">Simulation Log</div>
+            <div class="logbox" id="logBox"><span style="color:var(--tl)">System ready.</span></div>
+          </div>
+        </div>
+
+        <!-- Superposition View — v14 IBM-style + beginner features -->
+        <div id="view-super"
+          style="display:block;height:100%;overflow:hidden;display:flex;flex-direction:column;position:relative;">
+          <div class="ctitle" style="flex-shrink:0">
+            <span>Quantum Circuit Simulator — Superposition</span>
+            <span style="font-size:9.5px;color:var(--tl);font-family:monospace" id="qcStatus">State: |0⟩</span>
+          </div>
+
+          <!-- "What Just Changed?" Popup -->
+          <div id="qcPopup"
+            style="display:none;position:absolute;top:54px;left:50%;transform:translateX(-50%);background:#fff;border:2px solid var(--sky);border-radius:10px;padding:11px 18px;box-shadow:0 8px 28px rgba(42,109,217,.28);z-index:200;min-width:270px;text-align:center;animation:popupSlide .3s ease;cursor:default;">
+            <!-- Close button -->
+            <div onclick="document.getElementById('qcPopup').style.display='none';clearTimeout(popupTimer);"
+              style="position:absolute;top:6px;right:9px;font-size:13px;color:var(--tl);cursor:pointer;font-weight:700;line-height:1;"
+              title="Close">✕</div>
+            <div id="qcPopupTitle" style="font-size:12px;font-weight:700;margin-bottom:4px;"></div>
+            <div id="qcPopupBefore" style="font-size:9.5px;color:var(--tl);margin-bottom:2px;"></div>
+            <div id="qcPopupAfter" style="font-size:11px;font-weight:600;color:var(--td);margin-bottom:5px;"></div>
+            <div id="qcPopupAnalogy" style="font-size:10.5px;color:var(--tm);"></div>
+            <div style="font-size:8px;color:var(--tl);margin-top:5px;">hover to keep • auto-closes in 4s</div>
+          </div>
+
+          <!-- Main 2-col layout -->
+          <div style="display:grid;grid-template-columns:192px 1fr;flex:1;min-height:0;overflow:hidden;">
+
+            <!-- GATE PANEL (Left) -->
+            <div id="qcGatePanel"
+              style="background:var(--L);border-right:1px solid var(--bd);padding:10px 9px;display:flex;flex-direction:column;gap:7px;overflow-y:auto;">
+              <div class="sh">Gates <span style="font-size:8.5px;color:var(--tl);font-weight:400">(click or drag)</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                <div class="gate-btn" id="gb-H" draggable="true" onclick="qcSelectGate('H')"
+                  ondragstart="qcDragStart(event,'H')">
+                  <span style="font-size:16px;font-weight:800;color:var(--sky)">H</span>
+                  <span style="font-size:8px;color:var(--tl)">Hadamard</span>
+                </div>
+                <div class="gate-btn" id="gb-X" draggable="true" onclick="qcSelectGate('X')"
+                  ondragstart="qcDragStart(event,'X')">
+                  <span style="font-size:16px;font-weight:800;color:var(--mint)">X</span>
+                  <span style="font-size:8px;color:var(--tl)">Pauli-X</span>
+                </div>
+                <div class="gate-btn" id="gb-Z" draggable="true" onclick="qcSelectGate('Z')"
+                  ondragstart="qcDragStart(event,'Z')">
+                  <span style="font-size:16px;font-weight:800;color:var(--purple)">Z</span>
+                  <span style="font-size:8px;color:var(--tl)">Pauli-Z</span>
+                </div>
+                <div class="gate-btn" id="gb-M" draggable="true" onclick="qcSelectGate('M')"
+                  ondragstart="qcDragStart(event,'M')">
+                  <span style="font-size:16px;font-weight:800;color:var(--coral)">M</span>
+                  <span style="font-size:8px;color:var(--tl)">Measure</span>
+                </div>
+              </div>
+              <!-- Gate hint — shows full text, no clipping -->
+              <div id="gateHint"
+                style="background:#fff;border:1px solid var(--bd);border-radius:6px;padding:7px 8px;font-size:9.5px;color:var(--tm);line-height:1.6;">
+                <strong style="color:var(--sky)">Select a gate</strong><br>Click above, then click the wire to place
+                it. Or drag onto the wire!
+              </div>
+
+              <!-- Gate Matrix Toggle -->
+              <button onclick="toggleMatrix()" id="matrixToggleBtn"
+                style="background:#fff;border:1px solid var(--bd);border-radius:6px;padding:6px 8px;font-family:'Poppins',sans-serif;font-size:9.5px;font-weight:600;color:var(--tm);cursor:pointer;text-align:left;transition:all .2s;width:100%;">▶
+                Gate Matrix</button>
+              <div id="matrixPanel"
+                style="display:none;background:#f8faff;border:1px solid var(--bd);border-radius:6px;padding:10px;">
+                <div id="matrixContent" style="font-size:10px;color:var(--sky);line-height:1.8;">Select a gate to see
+                  its matrix</div>
+              </div>
+
+              <div class="sh" style="margin-top:2px">Presets</div>
+              <button class="qc-preset-btn" onclick="qcLoadPreset('superposition')">Superposition<br><span
+                  style="font-weight:400;color:var(--tl);font-size:8px">H only — equal 50/50 split</span></button>
+              <button class="qc-preset-btn" onclick="qcLoadPreset('flip')">Full Flip<br><span
+                  style="font-weight:400;color:var(--tl);font-size:8px">X→H→X — advanced state</span></button>
+              <button class="qc-preset-btn" onclick="qcLoadPreset('phaseKick')">Phase Kick<br><span
+                  style="font-weight:400;color:var(--tl);font-size:8px">H→Z→H — same prob, diff phase!</span></button>
+              <button class="qc-preset-btn" onclick="qcLoadPreset('measure')">H then Measure<br><span
+                  style="font-weight:400;color:var(--tl);font-size:8px">Random collapse demo</span></button>
+
+              <div class="sh" style="margin-top:2px">Controls</div>
+              <button class="rbtn" onclick="qcRunCircuit()" style="font-size:11px;padding:7px">▶ Run Circuit</button>
+              <button class="rbtn" onclick="qcStepCircuit()"
+                style="font-size:11px;padding:7px;background:linear-gradient(135deg,#f39c12,#e67e22);">⏭ Step</button>
+              <button
+                style="background:#fff;border:1px solid var(--bd);border-radius:7px;padding:7px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;color:var(--tm);cursor:pointer;"
+                onclick="qcClearCircuit()">✕ Clear</button>
+
+              <div class="sh" style="margin-top:2px">Stats</div>
+              <div style="font-size:9.5px;color:var(--tm);line-height:1.9;">
+                <div>Gates: <strong id="qcGateCount" style="color:var(--sky)">0</strong></div>
+                <div>Measurements: <strong id="qcMeasCount" style="color:var(--coral)">0</strong></div>
+                <div>Phase: <strong id="qcPhaseVal" style="color:var(--purple)">0°</strong></div>
+              </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div style="display:flex;flex-direction:column;overflow:hidden;">
+
+              <!-- CIRCUIT EDITOR -->
+              <div id="qcCircuitArea"
+                style="background:#05101f;padding:12px 14px;flex-shrink:0;border-bottom:1px solid var(--bd);">
+                <div style="font-size:9px;color:rgba(99,179,237,0.6);margin-bottom:7px;font-family:monospace;">QUANTUM
+                  CIRCUIT — click wire to place selected gate · click gate to remove · drag gate from panel</div>
+                <div style="display:flex;align-items:center;gap:0;" id="qcWireRow">
+                  <div style="font-family:monospace;font-size:11px;color:#63b3ed;margin-right:8px;white-space:nowrap;">
+                    q[0]</div>
+                  <div style="height:2px;width:14px;background:#63b3ed;flex-shrink:0;"></div>
+                  <div id="qcGatesContainer" style="display:flex;align-items:center;gap:0;"></div>
+                  <div style="height:2px;flex:1;background:#63b3ed;min-width:20px;cursor:pointer;" id="qcEndWire"
+                    ondragover="event.preventDefault();this.style.background='#f39c12';this.style.height='4px'"
+                    ondragleave="this.style.background='#63b3ed';this.style.height='2px'"
+                    ondrop="qcDropGate(event);this.style.background='#63b3ed';this.style.height='2px'">
+                  </div>
+                  <div style="font-family:monospace;font-size:14px;color:#63b3ed;margin-left:4px;">⊗</div>
+                </div>
+                <div id="qcStepMsg"
+                  style="margin-top:6px;font-size:10px;font-family:monospace;color:#f39c12;min-height:14px;"></div>
+              </div>
+
+              <!-- STATE JOURNEY CHAIN -->
+              <div style="background:#f0f4ff;border-bottom:1px solid var(--bd);padding:8px 14px;flex-shrink:0;">
+                <div style="font-size:9.5px;font-weight:700;color:var(--td);margin-bottom:6px;">Qubit State Journey
+                  <span style="font-weight:400;color:var(--tl);font-size:8.5px">(click any node)</span>
+                </div>
+                <div id="qcJourneyRow"
+                  style="display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-bottom:4px;min-height:56px;">
+                </div>
+              </div>
+
+              <!-- CIRCUIT STORY -->
+              <div id="qcStory"
+                style="background:#f8faff;border-bottom:1px solid var(--bd);padding:7px 14px;flex-shrink:0;font-size:9.5px;color:var(--tm);line-height:1.6;max-height:52px;overflow-y:auto;">
+                <strong style="color:var(--sky)">Circuit Story:</strong> Start at <strong>|0⟩</strong> (north pole of
+                Bloch sphere). Select a gate and place it on the wire, then press Run!
+              </div>
+
+              <!-- BOTTOM: left=prob+math+analogy  right=bloch sphere -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:0;overflow:hidden;">
+
+                <!-- LEFT BOTTOM -->
+                <div
+                  style="padding:9px 12px;display:flex;flex-direction:column;gap:7px;border-right:1px solid var(--bd);overflow-y:auto;">
+                  <div style="font-size:9.5px;font-weight:700;color:var(--td);">Measurement Probabilities</div>
+                  <div class="prob-row">
+                    <div class="prob-lbl">|0⟩</div>
+                    <div class="prob-bar-bg">
+                      <div class="prob-bar-fg p0" id="qcPb0" style="width:100%;transition:width .5s"></div>
+                    </div>
+                    <div class="prob-pct" id="qcPp0">100%</div>
+                  </div>
+                  <div class="prob-row">
+                    <div class="prob-lbl">|1⟩</div>
+                    <div class="prob-bar-bg">
+                      <div class="prob-bar-fg p1" id="qcPb1" style="width:0%;transition:width .5s"></div>
+                    </div>
+                    <div class="prob-pct" id="qcPp1">0%</div>
+                  </div>
+                  <!-- State vector -->
+                  <div style="background:#fff;border:1px solid var(--bd);border-radius:6px;padding:6px 9px;">
+                    <div style="font-size:9px;color:var(--tl);margin-bottom:2px;">State Vector |ψ⟩</div>
+                    <div id="qcStateVec"
+                      style="font-family:'Courier New',monospace;font-size:10.5px;color:var(--sky);font-weight:700;">|ψ⟩
+                      = 1.000|0⟩ + 0.000|1⟩</div>
+                    <div id="qcMatrix"
+                      style="font-family:'Courier New',monospace;font-size:9.5px;color:var(--purple);margin-top:2px;">
+                      [1.000, 0.000]</div>
+                  </div>
+                  <!-- Real World Analogy -->
+                  <div id="qcAnalogy"
+                    style="background:linear-gradient(135deg,#f0f4ff,#f8faff);border:1px solid var(--bd);border-radius:8px;padding:8px 10px;">
+                    <div style="font-size:9px;font-weight:700;color:var(--tl);margin-bottom:4px;">Real World Analogy
+                    </div>
+                    <div id="qcAnalogyIcon" style="font-size:20px;margin-bottom:3px;"></div>
+                    <div id="qcAnalogyText" style="font-size:9.5px;color:var(--tm);line-height:1.6;">Coin lying flat —
+                      definitely showing HEADS (|0⟩). Certain, no mystery.</div>
+                  </div>
+                  <!-- Measurement result -->
+                  <div id="qcMeasResult"
+                    style="display:none;background:#fff5f5;border:1px solid rgba(231,76,60,.3);border-radius:6px;padding:7px 10px;font-size:10px;color:var(--coral);font-weight:600;text-align:center;">
+                  </div>
+                  <!-- Phase label (no separate dial canvas — arc shown on Bloch sphere) -->
+                  <div style="font-size:9px;color:var(--tm);">Phase φ: <strong id="qcPhaseLabel"
+                      style="color:var(--purple)">0°</strong> <span style="color:var(--tl)">(see arc on Bloch sphere
+                      →)</span></div>
+                </div>
+
+                <!-- RIGHT BOTTOM: Bloch Sphere with phase overlay -->
+                <div
+                  style="display:flex;flex-direction:column;padding:8px 10px;gap:4px;overflow:hidden;position:relative;">
+                  <div style="font-size:9.5px;font-weight:700;color:var(--td);flex-shrink:0;">Bloch Sphere <span
+                      style="font-size:8px;font-weight:400;color:var(--tl)">(drag to rotate)</span></div>
+                  <div style="position:relative;flex:1;min-height:0;">
+                    <canvas id="blochCanvas"
+                      style="width:100%;height:100%;cursor:grab;border-radius:8px;display:block;"></canvas>
+                    <div id="phaseOverlay"
+                      style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.65);color:#b794f4;padding:3px 9px;border-radius:4px;font-size:9.5px;font-weight:700;font-family:monospace;pointer-events:none;">
+                      φ = 0°</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teleportation View — v16 Canvas-based with full animation -->
+        <div id="view-tele" style="display:none;height:100%;overflow:hidden;flex-direction:column;">
+          <div class="ctitle" style="flex-shrink:0;">
+            <span>Quantum Teleportation</span>
+            <span style="font-size:9.5px;color:var(--tl)" id="teleStatusLbl">Step 1: Generate entangled pair to
+              begin</span>
+          </div>
+
+          <!-- Canvas area — takes all available space -->
+          <div style="flex:1;min-height:0;position:relative;background:#05101f;">
+            <canvas id="teleCanvas" style="width:100%;height:100%;display:block;"></canvas>
+          </div>
+
+          <!-- Control panel -->
+          <div style="background:#f8faff;border-top:1px solid var(--bd);padding:10px 14px;flex-shrink:0;">
+            <!-- Step progress dots -->
+            <div style="display:flex;align-items:center;gap:4px;margin-bottom:10px;">
+              <div class="tele-step-dot active" id="tsd1">1</div>
+              <div class="tele-step-line"></div>
+              <div class="tele-step-dot" id="tsd2">2</div>
+              <div class="tele-step-line"></div>
+              <div class="tele-step-dot" id="tsd3">3</div>
+              <div class="tele-step-line"></div>
+              <div class="tele-step-dot" id="tsd4">4</div>
+              <span style="font-size:9.5px;color:var(--tm);margin-left:10px;font-weight:600;" id="teleStepLbl">Generate
+                entangled pair to begin</span>
+            </div>
+
+            <!-- Action buttons -->
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+              <button id="btnTeleEntangle" class="rbtn" style="max-width:220px;font-size:11px;padding:8px"
+                onclick="teleEntangle()">
+                Generate Entangled Pair
+              </button>
+              <button id="btnTeleBell" class="rbtn" style="max-width:210px;font-size:11px;padding:8px;opacity:.4"
+                onclick="teleBell()" disabled>
+                Perform Bell Measurement
+              </button>
+              <button
+                style="background:#fff;border:1px solid var(--bd);border-radius:7px;padding:8px 14px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;color:var(--tm);cursor:pointer;"
+                onclick="teleReset()">↺ Reset</button>
+            </div>
+
+            <!-- Gate panel — shown only at step 3 -->
+            <div id="teleGatePanel" style="display:none;margin-top:10px;flex-wrap:wrap;gap:8px;align-items:center;">
+              <span style="font-size:10px;font-weight:700;color:var(--td);">Bob: Apply correction gate →</span>
+              <button class="tele-gate-btn" id="tgX" onclick="teleApplyGate('X')">X gate</button>
+              <button class="tele-gate-btn" id="tgZ" onclick="teleApplyGate('Z')">Z gate</button>
+              <button class="tele-gate-btn" id="tgXZ" onclick="teleApplyGate('XZ')">XZ gate</button>
+              <button class="tele-gate-btn" id="tgI" onclick="teleApplyGate('I')">None (I)</button>
+              <span id="teleGateMsg" style="font-size:10px;font-weight:600;margin-left:6px;min-height:18px;"></span>
+            </div>
+
+            <!-- Extra controls row: noise + math -->
+            <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;margin-top:10px;">
+              <!-- Noise slider -->
+              <div style="flex:1;min-width:160px;">
+                <div
+                  style="font-size:9px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;">
+                  Channel Noise</div>
+                <div class="slrow">
+                  <input class="sl" type="range" id="teleNoiseSl" min="0" max="100" value="0"
+                    oninput="onTeleNoise(this)">
+                  <span class="slv" id="teleNoiseVal">0%</span>
+                </div>
+                <div id="teleFidelityLbl" style="font-size:9px;color:var(--mint);font-weight:600;margin-top:2px;">
+                  Fidelity: 100%</div>
+              </div>
+              <!-- Math toggle -->
+              <div style="flex:1;min-width:140px;">
+                <button id="teleMathToggle" onclick="toggleTeleMath()"
+                  style="background:#fff;border:1px solid var(--bd);border-radius:5px;padding:5px 9px;font-family:'Poppins',sans-serif;font-size:9.5px;font-weight:600;color:var(--tm);cursor:pointer;width:100%;text-align:left;">∑
+                  Show Math</button>
+                <div id="teleMathPanel"
+                  style="display:none;margin-top:5px;background:#fff;border:1px solid var(--bd);border-radius:6px;padding:8px 9px;font-family:'Courier New',monospace;font-size:9.5px;color:var(--sky);line-height:1.8;">
+                </div>
+              </div>
+            </div>
+
+            <!-- Teleportation Info Box -->
+            <div
+              style="margin-top:10px;padding:9px 12px;background:linear-gradient(135deg,#f0fff8,#e8f8f0);border:1px solid rgba(39,174,96,0.3);border-radius:8px;">
+              <div style="font-size:10px;font-weight:700;color:var(--mint);margin-bottom:4px;">How Teleportation
+                Works</div>
+              <div style="font-size:9.5px;color:var(--tm);line-height:1.7;">
+                <strong>Teleportation ≠ matter transfer.</strong> It transfers the <em>quantum state</em> using
+                entanglement + classical communication.<br>
+                <span style="color:var(--sky);font-weight:600;">Alice</span> → (2 classical bits) → <span
+                  style="color:var(--mint);font-weight:600;">Bob</span> · Bob applies correction gate to reconstruct
+                Alice's original qubit state.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════ E91 VIEW ═══════ -->
+        <div id="view-e91" style="display:none;flex-direction:column;height:100%;overflow-y:auto;overflow-x:hidden;">
+          <div class="ctitle" style="flex-shrink:0;position:relative;">
+            <span>E91 Protocol — Quantum Secure Communication</span>
+            <span id="e91Status" style="font-size:9.5px;color:var(--tl);">Idle</span>
+          </div>
+          <div class="story-banner">
+            <span></span>
+            <span id="e91StoryTxt">E91 uses entangled photon pairs and Bell inequality to establish a provably secure
+              key. <strong>Click "1. Establish Channel"</strong> to begin!</span>
+          </div>
+          <div style="position:relative;height:300px;flex-shrink:0;background:#05101f;overflow:hidden;">
+            <canvas id="e91Canvas" style="width:100%;height:100%;display:block;"></canvas>
+            <div id="e91StageTag" style="position:absolute;top:8px;left:8px;
+        background:rgba(5,16,31,.85);border:1px solid rgba(99,179,237,.4);
+        border-radius:5px;padding:3px 9px;font-size:9.5px;font-weight:600;
+        color:#63b3ed;pointer-events:none;">Stage 1: Classical Channel</div>
+            <div id="e91BellOverlay" style="position:absolute;top:8px;right:8px;
+        background:rgba(5,16,31,.85);border:1px solid rgba(39,174,96,.4);
+        border-radius:5px;padding:3px 9px;font-size:9px;font-weight:700;
+        color:#68d391;pointer-events:none;">|S| = 2.83</div>
+            <!-- AI Professor Box -->
+            <div id="e91AiBox" style="display:none;position:absolute;bottom:12px;right:12px;
+        width:260px;background:rgba(10,25,50,0.93);border:1px solid rgba(99,179,237,0.5);
+        border-radius:8px;padding:10px 12px;font-size:9px;color:#e8f4ff;line-height:1.65;
+        box-shadow:0 4px 18px rgba(0,0,0,0.5);">
+              <div style="font-size:9.5px;font-weight:700;color:#63b3ed;margin-bottom:5px;">Professor Mode</div>
+              <div id="e91AiText"></div>
+            </div>
+            <!-- XOR Calc floating popup (shown during XOR animate) -->
+            <div id="e91XorCalc" style="display:none;position:absolute;top:50%;left:50%;
+        transform:translate(-50%,-50%);background:rgba(10,20,40,0.95);
+        border:2px solid var(--sky);border-radius:10px;padding:12px 20px;
+        font-family:'Courier New',monospace;font-size:14px;font-weight:700;
+        color:#fff;text-align:center;pointer-events:none;
+        box-shadow:0 0 30px rgba(42,109,217,0.4);">
+              <div id="e91XorCalcLine1" style="color:#63b3ed;font-size:11px;margin-bottom:4px;"></div>
+              <div id="e91XorCalcLine2" style="font-size:18px;letter-spacing:2px;"></div>
+              <div id="e91XorCalcLine3" style="color:#68d391;font-size:11px;margin-top:4px;"></div>
+            </div>
+            <div id="e91FilePreview" style="display:none;position:absolute;bottom:8px;left:50%;
+        transform:translateX(-50%);background:rgba(5,16,31,0.9);border:1px solid rgba(99,179,237,.4);
+        border-radius:6px;padding:4px 10px;font-size:9px;color:#63b3ed;text-align:center;"></div>
+          </div>
+          <!-- File Info Panel (file mode only) -->
+          <div id="e91FileInfoPanel"
+            style="display:none;background:#0d1f38;border:1px solid rgba(99,179,237,0.22);border-radius:8px;padding:10px 14px;margin:6px 10px;font-size:8.5px;color:rgba(180,210,255,0.85);line-height:1.7;">
+            <div id="e91FileInfoContent"></div>
+          </div>
+
+          <!-- ══ PERMANENT TWO-COLUMN TABLE LAYOUT ══ -->
+          <div id="e91TableZone"
+            style="flex-shrink:0;display:none;border-top:2px solid #2a4a8e;background:#0f1c35;padding:8px 10px 14px 10px;">
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start;">
+
+              <!-- ── ALICE — XOR Encryption ── -->
+              <div id="e91AliceTable"
+                style="background:#1a2a4a;border:1px solid rgba(99,179,237,0.3);border-radius:8px;padding:10px 12px;min-width:0;">
+                <!-- Header -->
+                <div
+                  style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:4px;">
+                  <div style="display:flex;align-items:center;gap:7px;min-width:0;">
+                    <span style="font-size:10px;font-weight:700;color:#63b3ed;">XOR Encryption — One-Time Pad</span>
+                    <span id="e91EncProgress"
+                      style="display:none;font-family:'Courier New',monospace;font-size:8px;font-weight:700;color:#ffd700;background:rgba(255,215,0,0.1);padding:2px 5px;border-radius:4px;white-space:nowrap;"></span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;flex-shrink:0;">
+                    <span id="e91KeyCycleNote"
+                      style="display:none;font-size:7px;color:rgba(99,179,237,0.55);font-style:italic;"></span>
+                    <button id="e91ReplayBtn" onclick="e91ReplayStep4()" style="display:none;background:rgba(42,109,217,0.15);border:1px solid rgba(42,109,217,0.4);border-radius:5px;
+                padding:2px 7px;font-size:8px;font-weight:700;cursor:pointer;color:#63b3ed;
+                font-family:'Poppins',sans-serif;">↺ Replay</button>
+                    <button onclick="e91ToggleWhyXor()" style="background:rgba(42,109,217,0.1);border:1px solid rgba(42,109,217,0.3);border-radius:5px;
+                padding:2px 7px;font-size:8px;font-weight:700;cursor:pointer;color:#63b3ed;
+                font-family:'Poppins',sans-serif;">❓ Why XOR?</button>
+                  </div>
+                </div>
+                <!-- Why XOR expandable -->
+                <div id="e91WhyXor" style="display:none;margin-bottom:6px;padding:6px 10px;
+            background:rgba(42,109,217,0.08);border:1px solid rgba(42,109,217,0.25);
+            border-radius:6px;font-size:8px;color:rgba(200,220,255,0.85);line-height:1.7;">
+                  <strong style="color:#63b3ed">Why XOR (⊕)?</strong><br>
+                  0⊕0=0 &nbsp;0⊕1=1 &nbsp;1⊕0=1 &nbsp;1⊕1=0<br>
+                  <strong>Self-inverse:</strong> (A⊕B)⊕B = A — XOR undoes itself!<br>
+                  With a random quantum key = unbreakable One-Time Pad.
+                </div>
+                <!-- Alice XOR grid — each row scrolls independently, label is sticky -->
+                <div id="e91XorGrid" style="display:flex;flex-direction:column;gap:2px;"></div>
+                <!-- Footer -->
+                <div style="margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:6px;
+            font-size:7.5px;color:rgba(150,180,220,0.55);border-top:1px solid rgba(99,179,237,0.12);padding-top:5px;">
+                  <div><strong style="color:rgba(150,180,220,0.75)">XOR Truth Table:</strong><br>0⊕0=0
+                    &nbsp;0⊕1=1<br>1⊕0=1 &nbsp;1⊕1=0</div>
+                  <div><strong style="color:rgba(150,180,220,0.75)">Why it's secure:</strong><br>XOR with random key =
+                    One-Time Pad.<br>Mathematically unbreakable!</div>
+                </div>
+              </div>
+
+              <!-- ── BOB — Decryption ── -->
+              <div id="e91BobTable"
+                style="background:#0f2a1a;border:1px solid rgba(39,174,96,0.35);border-radius:8px;padding:10px 12px;min-width:0;">
+                <!-- Header -->
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                  <div style="display:flex;align-items:center;gap:7px;">
+                    <span style="font-size:10px;font-weight:700;color:#68d391;">Bob Decryption</span>
+                    <span id="e91DecProgress"
+                      style="display:none;font-family:'Courier New',monospace;font-size:8px;font-weight:700;color:#68d391;background:rgba(39,174,96,0.1);padding:2px 5px;border-radius:4px;white-space:nowrap;"></span>
+                  </div>
+                </div>
+                <!-- Bob XOR grid -->
+                <div id="e91XorDecryptGrid" style="display:flex;flex-direction:column;gap:2px;"></div>
+                <!-- Result output — below Bob's grid -->
+                <div id="e91ReconstructOutput" style="display:none;margin-top:8px;padding:8px 12px;
+            background:rgba(39,174,96,0.08);border:1px solid rgba(39,174,96,0.25);border-radius:6px;"></div>
+              </div>
+
+            </div><!-- end 2-col grid -->
+
+            <!-- Hover tooltip -->
+            <div id="e91XorTooltip" style="display:none;margin-top:5px;background:#1a2a4a;
+        border:1px solid rgba(99,179,237,0.3);border-radius:6px;padding:6px 10px;
+        font-size:9px;color:rgba(200,220,255,0.9);line-height:1.7;"></div>
+
+          </div><!-- end e91TableZone -->
+          <!-- Step bar -->
+          <div style="display:flex;align-items:center;gap:4px;padding:8px 14px;
+      background:#f8faff;border-top:1px solid var(--bd);flex-shrink:0;">
+            <div class="tele-step-dot active" id="e91d1">1</div>
+            <div class="tele-step-line"></div>
+            <div class="tele-step-dot" id="e91d2">2</div>
+            <div class="tele-step-line"></div>
+            <div class="tele-step-dot" id="e91d3">3</div>
+            <div class="tele-step-line"></div>
+            <div class="tele-step-dot" id="e91d4">4</div>
+            <div class="tele-step-line"></div>
+            <div class="tele-step-dot" id="e91d5">5</div>
+            <span id="e91StepLbl" style="font-size:9.5px;color:var(--tm);margin-left:10px;font-weight:600;">
+              Click "1. Establish Channel" to start</span>
+          </div>
+        </div>
+
+      </div><!-- end cenMain -->
+
+      <!-- RIGHT — Enhanced Live Analysis -->
+      <div class="right">
+        <div class="rtitle">Live Analysis</div>
+
+        <!-- ① EXISTING: Current Photon (KEPT, UNCHANGED) -->
+        <div class="cur-photon">
+          <div class="cur-photon-title">
+            <span>Current Photon <span class="tt"><span class="tti">?</span><span class="ttb">A photon is a tiny
+                  particle of light. Alice sends one photon for each 0 or 1 in her message!</span></span></span>
+            <span id="cpPhotonId" style="font-size:9px;color:var(--tl);font-family:monospace">#—</span>
+          </div>
+          <div class="cp-row"><span class="cp-lbl">Character</span><span class="cp-val" id="cpChar">—</span></div>
+          <div class="cp-row"><span class="cp-lbl">Bit value</span><span class="cp-val" id="cpBit">—</span></div>
+          <div class="cp-row"><span class="cp-lbl">Alice basis <span class="tt"><span class="tti">?</span><span
+                  class="ttb">Basis = the angle Alice tilts her polariser. + means straight, × means
+                  diagonal.</span></span></span><span class="cp-val" id="cpABasis">—</span></div>
+          <div class="cp-row"><span class="cp-lbl">Photon state</span><span class="cp-val" id="cpState">—</span></div>
+          <div class="cp-row"><span class="cp-lbl">Bob basis <span class="tt"><span class="tti">?</span><span
+                  class="ttb">Bob randomly picks his own polariser angle. If it matches Alice's, they get a useful key
+                  bit!</span></span></span><span class="cp-val" id="cpBBasis">—</span></div>
+          <div class="cp-row"><span class="cp-lbl">Result</span><span class="cp-val" id="cpResult">—</span></div>
+        </div>
+
+        <!-- ② NEW: What's Happening Now -->
+        <div class="whn-card">
+          <div class="whn-title"><span class="pulse-dot"></span> What's Happening Now</div>
+          <div id="whnRows">
+            <div class="whn-row"><span class="whn-icon"></span><span class="whn-lbl">Status</span><span
+                class="whn-val">Waiting for simulation...</span></div>
+          </div>
+          <div class="whn-verdict transit" id="whnVerdict">Press ▶ Run Experiment to start</div>
+        </div>
+
+        <!-- ③ EXISTING: Character Progress (KEPT + ENHANCED) -->
+        <div class="char-prog">
+          <div class="char-prog-title">
+            Character Progress
+            <span class="char-hint">(8 bits needed per letter)</span>
+            <span class="tt"><span class="tti">?</span><span class="ttb">Each letter of the alphabet = 8 bits (0s and
+                1s). Bob can only decode a letter once he collects all 8 matching bits from Alice!</span></span>
+          </div>
+          <div id="charProgress"></div>
+        </div>
+
+        <!-- ④ NEW: Bob's Message Reconstruction -->
+        <div class="bmr-card">
+          <div class="bmr-title">Bob's Message So Far</div>
+          <div class="bmr-msg" id="bmrMsg"><span
+              style="color:var(--tl);font-size:11px;font-weight:400;letter-spacing:0">Waiting for decoded
+              letters...</span></div>
+          <div class="bmr-sub" id="bmrSub">— / — characters decoded</div>
+        </div>
+
+        <!-- ⑤ EXISTING: Stats grid (KEPT, UNCHANGED) -->
+        <div class="stat-grid">
+          <div class="stat-box">
+            <div class="stat-num" id="statPh">0</div>
+            <div class="stat-lbl">Photons Sent <span class="tt"><span class="tti">?</span><span class="ttb">Total number
+                  of light particles Alice has fired towards Bob.</span></span></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--mint)" id="statKey">0</div>
+            <div class="stat-lbl">Key Bits <span class="tt"><span class="tti">?</span><span class="ttb">The number of
+                  bits that BOTH Alice and Bob successfully matched. These form the secret key!</span></span></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--coral)" id="statQber">0%</div>
+            <div class="stat-lbl">Error Rate <span class="tt"><span class="tti">?</span><span class="ttb">QBER = Quantum
+                  Bit Error Rate. High QBER means someone may be spying!</span></span></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--purple)" id="statSec">✓</div>
+            <div class="stat-lbl">Safe?</div>
+          </div>
+        </div>
+
+        <!-- ⑥ NEW: Security Level Indicator -->
+        <div class="sec-card">
+          <div class="sec-title">Security Level <span class="tt"><span class="tti">?</span><span class="ttb">QBER
+                below 5% = very safe. 5–11% = suspicious. Above 11% = Eve is almost certainly spying!</span></span>
+          </div>
+          <div class="sec-bar-track">
+            <div class="sec-bar-fill" id="secBarFill" style="width:0%"></div>
+          </div>
+          <div class="sec-zones">
+            <span style="color:var(--mint)">● Safe (0–5%)</span>
+            <span style="color:var(--amber)">● Warning (5–11%)</span>
+            <span style="color:var(--coral)">● Attack (&gt;11%)</span>
+          </div>
+          <div class="sec-badge safe" id="secBadge">SAFE — Channel is secure</div>
+        </div>
+
+        <!-- ⑦ NEW: Eve Detection Status -->
+        <div class="eve-status-card" id="eveStatusCard">
+          <div class="eve-st-title">Eve Detection Status</div>
+          <div class="eve-st-row">
+            <div class="eve-st-icon" id="eveSIcon"></div>
+            <div>
+              <div class="eve-st-text ok" id="eveSText">No interference detected</div>
+              <div class="eve-st-sub" id="eveSSub">Channel appears clean. Communication is safe.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⑧ EXISTING: QBER chart (KEPT, UNCHANGED) -->
+        <div class="cc">
+          <div class="cht">Error Rate (QBER) Over Time <span class="tt"><span class="tti">?</span><span class="ttb">This
+                graph shows how the error rate changes over time. A sudden rise means Eve is interfering!</span></span>
+          </div>
+          <div class="cw"><canvas id="cQber"></canvas></div>
+        </div>
+
+        <!-- ⑨ EXISTING: Secret Key (KEPT, UNCHANGED) -->
+        <div class="key-card">
+          <div class="cht">Secret Key So Far</div>
+          <div class="key-bits" id="keyBitsDisp">—</div>
+        </div>
+
+        <!-- ⑩ NEW: Key Comparison Visualization -->
+        <div class="key-cmp-card">
+          <div class="key-cmp-title">Key Comparison (last 16 bits) <span class="tt"><span class="tti">?</span><span
+                class="ttb">Alice and Bob compare a sample of their key. Mismatches (red) reveal Eve's
+                interference!</span></span></div>
+          <div class="key-cmp-row">
+            <span class="key-cmp-lbl">Alice:</span>
+            <div class="key-bit-wrap" id="kcAlice"></div>
+          </div>
+          <div class="key-cmp-row">
+            <span class="key-cmp-lbl">Bob:</span>
+            <div class="key-bit-wrap" id="kcBob"></div>
+          </div>
+          <div class="key-cmp-legend">
+            <span>
+              <div class="kl-dot" style="background:rgba(39,174,96,.3);border:1px solid var(--mint)"></div>Match
+            </span>
+            <span>
+              <div class="kl-dot" style="background:rgba(231,76,60,.15);border:1px solid var(--coral)"></div>Mismatch
+              (Eve!)
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div><!-- end p-exp -->
+
+  <!-- ═══════ ENTANGLEMENT PANEL — Visual Insight Dashboard ═══════ -->
+  <div class="panel" id="p-ent">
+
+
+    <div class="ent-dash">
+      <!-- Particle background -->
+      <canvas id="entParticleCanvas"></canvas>
+
+      <!-- Header -->
+      <div class="ent-header">
+        <div class="ent-title">Quantum Entanglement — Spooky Action at a Distance</div>
+        <div class="ent-sub">
+          Two qubits share one quantum state — they are <span class="ent-kw cyan">entangled</span>.
+          Measuring one <span class="ent-kw amber">instantly</span> determines the other,
+          perfectly <span class="ent-kw green">correlated</span> — no matter the distance.
+        </div>
+      </div>
+
+      <!-- Visual strip -->
+      <div class="ent-strip">
+        <div class="ent-strip-inner">
+
+          <!-- Qubit A -->
+          <div class="ent-qubit" id="entQA" onclick="entMeasure()" title="Click to measure!">
+            <div class="ent-orb-wrap">
+              <div class="ent-orb-glow state-super" id="entGlowA"></div>
+              <div class="ent-orb state-super" id="entOrbA">A</div>
+              <div class="ent-orb-ring"></div>
+            </div>
+            <div class="ent-qubit-lbl">QUBIT A</div>
+            <div class="ent-state-lbl" id="entStateA">|ψ⟩</div>
+          </div>
+
+          <!-- Animated line + floating label -->
+          <div class="ent-line-area">
+            <canvas id="entLineCanvas"></canvas>
+            <div class="ent-result-float" id="entResultFloat"></div>
+          </div>
+
+          <!-- Qubit B -->
+          <div class="ent-qubit" id="entQB">
+            <div class="ent-orb-wrap">
+              <div class="ent-orb-glow state-super" id="entGlowB"></div>
+              <div class="ent-orb state-super" id="entOrbB">B</div>
+              <div class="ent-orb-ring" style="animation-delay:.8s"></div>
+            </div>
+            <div class="ent-qubit-lbl">QUBIT B</div>
+            <div class="ent-state-lbl" id="entStateB">|ψ⟩</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Hint -->
+      <div class="ent-hint" id="entHint">Click Qubit A to measure — watch Qubit B respond instantly!</div>
+
+      <!-- Bell states -->
+      <div class="ent-bell-section">
+        <div class="ent-bell-title">Bell States — The 4 Maximally Entangled Pairs</div>
+        <div class="ent-bell-grid">
+          <div class="ent-bell-tile" onclick="entSetBell('phi+')" title="Click to simulate this state">
+            <div class="ent-bell-left">
+              <div class="ent-bell-name">|Φ⁺⟩</div>
+              <div class="ent-bell-eq">( |00⟩ + |11⟩ ) / √2</div>
+            </div>
+            <span class="ent-bell-tag same">Same</span>
+          </div>
+          <div class="ent-bell-tile" onclick="entSetBell('phi-')" title="Click to simulate this state">
+            <div class="ent-bell-left">
+              <div class="ent-bell-name">|Φ⁻⟩</div>
+              <div class="ent-bell-eq">( |00⟩ − |11⟩ ) / √2</div>
+            </div>
+            <span class="ent-bell-tag phase">Phase flip</span>
+          </div>
+          <div class="ent-bell-tile" onclick="entSetBell('psi+')" title="Click to simulate this state">
+            <div class="ent-bell-left">
+              <div class="ent-bell-name">|Ψ⁺⟩</div>
+              <div class="ent-bell-eq">( |01⟩ + |10⟩ ) / √2</div>
+            </div>
+            <span class="ent-bell-tag opp">Opposite</span>
+          </div>
+          <div class="ent-bell-tile" onclick="entSetBell('psi-')" title="Click to simulate this state">
+            <div class="ent-bell-left">
+              <div class="ent-bell-name">|Ψ⁻⟩</div>
+              <div class="ent-bell-eq">( |01⟩ − |10⟩ ) / √2</div>
+            </div>
+            <span class="ent-bell-tag singlet">Singlet</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════ RESULTS PANEL — Dynamic Dashboard ═══════ -->
+  <div class="panel" id="p-results">
+
+
+    <div class="rdash" id="rdash">
+      <!-- Rendered dynamically by renderResultsDash() -->
+      <div class="rdash-empty" id="rdashEmpty">
+        <div class="rdash-empty-icon"></div>
+        <div class="rdash-empty-title">No Results Yet</div>
+        <div class="rdash-empty-sub">Run any experiment to see your results here.<br>Superposition, Teleportation, BB84
+          or Entanglement.</div>
+      </div>
+    </div>
+    <!-- Hidden stubs — required by BB84 JS (display:none, no layout impact) -->
+    <div style="display:none;">
+      <span id="resDecoded"></span>
+      <canvas id="rQberChart"></canvas>
+      <canvas id="rKeyChart"></canvas>
+      <span id="rPh">0</span>
+      <span id="rKey">0</span>
+      <span id="rQber">0%</span>
+      <span id="rSec">—</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════ GUIDE PANEL ═══════ -->
+  <div class="panel" id="p-guide">
+    <div class="info-panel" id="guide-panel"
+      style="background:#0f1c35;padding:0;display:flex;flex-direction:column;overflow:hidden;">
+
+      <!-- KaTeX CDN -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+      <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+      <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.getElementById('guide-panel'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+
+      <!-- Top nav bar -->
+      <div
+        style="background:#1a3060;border-bottom:2px solid #2a5090;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div
+            style="width:26px;height:26px;background:radial-gradient(circle,#63b3ed 30%,#1a5bbd 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;">
+          </div>
+          <span style="color:#fff;font-weight:700;font-size:13px;">Quantum Protocol & Algorithm Simulator — User
+            Guide</span>
+        </div>
+        <span style="color:#63b3ed;font-size:10px;font-weight:600;">Research-Grade Reference</span>
+      </div>
+
+      <!-- Section tabs -->
+      <div id="ug-tabs"
+        style="background:#142040;border-bottom:1px solid #2a4070;display:flex;overflow-x:auto;flex-shrink:0;padding:0 8px;">
+
+        <div class="ug-tab ug-active" onclick="ugShow('ug-s0',this)">Overview</div>
+        <div class="ug-tab" onclick="ugShow('ug-s1',this)">A–C · Bits & Qubits</div>
+        <div class="ug-tab" onclick="ugShow('ug-s2',this)">D–E · Gates & Measure</div>
+        <div class="ug-tab" onclick="ugShow('ug-s3',this)">F–G · Bloch & Entangle</div>
+        <div class="ug-tab" onclick="ugShow('ug-s4',this)">H · Bell States</div>
+        <div class="ug-tab" onclick="ugShow('ug-s5',this)">I · BB84 Protocol</div>
+        <div class="ug-tab" onclick="ugShow('ug-s6',this)">J · E91 Protocol</div>
+        <div class="ug-tab" onclick="ugShow('ug-s7',this)">Quick Reference</div>
+      </div>
+
+      <!-- Body -->
+      <div id="guide-body">
+
+        <!-- ══ OVERVIEW ══ -->
+        <div class="ug-sec ug-vis" id="ug-s0">
+          <div class="ug-h1">Quantum Protocol & Algorithm Simulator</div>
+          <div class="ug-lead">A research-grade, beginner-friendly reference guide covering quantum computing
+            fundamentals, cryptographic protocols, and the mathematics powering secure quantum communication.</div>
+          <hr class="ug-divider">
+          <div class="ug-grid2">
+            <div class="ug-card">
+              <div class="ug-h3">What This Guide Covers</div>
+              <ul class="ug-ul">
+                <li>Classical vs Quantum computing</li>
+                <li>Qubits, superposition & normalization</li>
+                <li>Quantum gates: H, X, Z</li>
+                <li>Measurement & wavefunction collapse</li>
+                <li>Bloch sphere geometry</li>
+                <li>Entanglement & Bell states</li>
+                <li>BB84 quantum key distribution</li>
+                <li>E91 protocol & CHSH inequality</li>
+              </ul>
+            </div>
+            <div class="ug-card">
+              <div class="ug-h3">Simulator Experiments</div>
+              <ul class="ug-ul">
+                <li><span class="ug-badge ug-b-blue">Superposition</span> — Visualise qubit states on Bloch sphere</li>
+                <li><span class="ug-badge ug-b-purple">Teleportation</span> — Quantum state transfer via entanglement
+                </li>
+                <li><span class="ug-badge ug-b-green">BB84</span> — Live quantum key distribution simulation</li>
+                <li><span class="ug-badge ug-b-amber">E91</span> — Entanglement-based cryptography with Bell test</li>
+              </ul>
+              <div class="ug-insight">Every experiment in this simulator is grounded in real quantum physics — the
+                equations shown here directly drive what you see on screen.</div>
+            </div>
+          </div>
+          <hr class="ug-divider">
+          <div class="ug-h3">Key Equations at a Glance</div>
+          <table class="ug-table">
+            <tr>
+              <th>Equation</th>
+              <th>Name</th>
+              <th>Section</th>
+            </tr>
+            <tr>
+              <td>$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$</td>
+              <td>General qubit state</td>
+              <td>B</td>
+            </tr>
+            <tr>
+              <td>$|\alpha|^2 + |\beta|^2 = 1$</td>
+              <td>Normalization condition</td>
+              <td>C</td>
+            </tr>
+            <tr>
+              <td>$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$</td>
+              <td>Hadamard gate</td>
+              <td>D</td>
+            </tr>
+            <tr>
+              <td>$P(0) = |\alpha|^2,\quad P(1) = |\beta|^2$</td>
+              <td>Measurement probabilities</td>
+              <td>E</td>
+            </tr>
+            <tr>
+              <td>$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$</td>
+              <td>Bell state Φ⁺</td>
+              <td>H</td>
+            </tr>
+            <tr>
+              <td>$|S| \leq 2\sqrt{2} \approx 2.828$</td>
+              <td>Tsirelson's bound (quantum max)</td>
+              <td>J</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- ══ SECTION A–C ══ -->
+        <div class="ug-sec" id="ug-s1">
+          <div class="ug-h1">A – C &nbsp;·&nbsp; Classical Bits, Qubits & Superposition</div>
+          <hr class="ug-divider">
+
+          <div class="ug-h2">A · Classical vs Quantum Computing</div>
+          <div class="ug-p">A classical computer works with <strong>bits</strong> — tiny switches that are either OFF
+            (0) or ON (1). Every calculation is deterministic: the same input always gives the same output. A quantum
+            computer uses <strong>qubits</strong>, which exploit quantum mechanics to exist in a combination of 0 and 1
+            simultaneously — until measured.</div>
+          <table class="ug-table">
+            <tr>
+              <th>Property</th>
+              <th>Classical Bit</th>
+              <th>Qubit</th>
+            </tr>
+            <tr>
+              <td>Basic unit</td>
+              <td>Bit (0 or 1)</td>
+              <td>Qubit $|0\rangle$ or $|1\rangle$</td>
+            </tr>
+            <tr>
+              <td>Possible states</td>
+              <td>Exactly one: 0 or 1</td>
+              <td>Superposition $\alpha|0\rangle + \beta|1\rangle$</td>
+            </tr>
+            <tr>
+              <td>Parallelism</td>
+              <td>Sequential</td>
+              <td>Simultaneous amplitude over all states</td>
+            </tr>
+            <tr>
+              <td>Information</td>
+              <td>1 bit per operation</td>
+              <td>Exponential state space ($2^n$ for $n$ qubits)</td>
+            </tr>
+            <tr>
+              <td>Measurement</td>
+              <td>Non-destructive</td>
+              <td>Collapses superposition — irreversible</td>
+            </tr>
+            <tr>
+              <td>Correlation</td>
+              <td>Local (classical)</td>
+              <td>Non-local entanglement (quantum)</td>
+            </tr>
+            <tr>
+              <td>Security basis</td>
+              <td>Computational hardness</td>
+              <td>Laws of physics (no-cloning theorem)</td>
+            </tr>
+          </table>
+          <div class="ug-insight">A classical computer with $n$ bits can be in exactly one of $2^n$ states. A quantum
+            computer with $n$ qubits can represent all $2^n$ states simultaneously — exponential power from linear
+            resources.</div>
+
+          <hr class="ug-divider">
+          <div class="ug-h2">B · Qubit Definition</div>
+          <div class="ug-p">Think of a qubit like a coin spinning in the air — it's neither heads nor tails until it
+            lands. Mathematically, a qubit is a unit vector in a 2-dimensional complex Hilbert space $\mathcal{H} =
+            \mathbb{C}^2$.</div>
+          <div class="ug-h3">General Qubit State</div>
+          <div class="ug-eq">$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$$</div>
+          <div class="ug-p">Here $\alpha$ and $\beta$ are complex numbers called <strong>probability
+              amplitudes</strong>. The basis states $|0\rangle$ and $|1\rangle$ are the computational basis vectors:
+          </div>
+          <div class="ug-eq">$$|0\rangle = \begin{pmatrix}1\\0\end{pmatrix}, \qquad |1\rangle =
+            \begin{pmatrix}0\\1\end{pmatrix}$$</div>
+          <table class="ug-table">
+            <tr>
+              <th>Symbol</th>
+              <th>Name</th>
+              <th>Meaning</th>
+            </tr>
+            <tr>
+              <td>$|\psi\rangle$</td>
+              <td>Ket (state vector)</td>
+              <td>The full quantum state of the qubit</td>
+            </tr>
+            <tr>
+              <td>$\alpha$</td>
+              <td>Amplitude for $|0\rangle$</td>
+              <td>Complex number; $|\alpha|^2$ = probability of measuring 0</td>
+            </tr>
+            <tr>
+              <td>$\beta$</td>
+              <td>Amplitude for $|1\rangle$</td>
+              <td>Complex number; $|\beta|^2$ = probability of measuring 1</td>
+            </tr>
+            <tr>
+              <td>$|0\rangle$</td>
+              <td>Computational basis state</td>
+              <td>Analogous to classical bit = 0</td>
+            </tr>
+            <tr>
+              <td>$|1\rangle$</td>
+              <td>Computational basis state</td>
+              <td>Analogous to classical bit = 1</td>
+            </tr>
+          </table>
+          <div class="ug-insight">Unlike a classical bit, a qubit carries both $\alpha$ and $\beta$ simultaneously.
+            This is not just "unknown" — both values physically exist until measurement forces a collapse.</div>
+
+          <hr class="ug-divider">
+          <div class="ug-h2">C · Superposition & Normalization</div>
+          <div class="ug-p">Superposition is the principle that a quantum system can be in multiple states at once. The
+            constraint that total probability must equal 1 gives us the <strong>normalization condition</strong>:</div>
+          <div class="ug-eq">$$|\alpha|^2 + |\beta|^2 = 1$$</div>
+          <div class="ug-p">A perfect equal superposition — both outcomes equally likely — is:</div>
+          <div class="ug-eq">$$|{+}\rangle = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle, \qquad
+            \text{where } \left|\frac{1}{\sqrt{2}}\right|^2 + \left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2} +
+            \frac{1}{2} = 1$$</div>
+          <table class="ug-table">
+            <tr>
+              <th>State</th>
+              <th>$\alpha$</th>
+              <th>$\beta$</th>
+              <th>$P(0)$</th>
+              <th>$P(1)$</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>$|0\rangle$</td>
+              <td>$1$</td>
+              <td>$0$</td>
+              <td>$100\%$</td>
+              <td>$0\%$</td>
+              <td>Classical 0</td>
+            </tr>
+            <tr>
+              <td>$|1\rangle$</td>
+              <td>$0$</td>
+              <td>$1$</td>
+              <td>$0\%$</td>
+              <td>$100\%$</td>
+              <td>Classical 1</td>
+            </tr>
+            <tr>
+              <td>$|{+}\rangle$</td>
+              <td>$\frac{1}{\sqrt{2}}$</td>
+              <td>$\frac{1}{\sqrt{2}}$</td>
+              <td>$50\%$</td>
+              <td>$50\%$</td>
+              <td>Equal superposition</td>
+            </tr>
+            <tr>
+              <td>$|{-}\rangle$</td>
+              <td>$\frac{1}{\sqrt{2}}$</td>
+              <td>$-\frac{1}{\sqrt{2}}$</td>
+              <td>$50\%$</td>
+              <td>$50\%$</td>
+              <td>Equal superposition (phase-flipped)</td>
+            </tr>
+          </table>
+          <div class="ug-warn">$|{+}\rangle$ and $|{-}\rangle$ have identical measurement probabilities in the
+            computational basis, but they are physically different states — the phase $-1$ is detectable in other bases.
+          </div>
+        </div>
+
+        <!-- ══ SECTION D–E ══ -->
+        <div class="ug-sec" id="ug-s2">
+          <div class="ug-h1">D – E &nbsp;·&nbsp; Quantum Gates & Measurement</div>
+          <hr class="ug-divider">
+
+          <div class="ug-h2">D · Quantum Gates — H, X, Z</div>
+          <div class="ug-p">Quantum gates are reversible operations on qubits, represented by <strong>unitary
+              matrices</strong> ($U^{\dagger}U = I$). They are the quantum analogue of classical logic gates, but unlike
+            classical gates they are always reversible.</div>
+
+          <div class="ug-h3">Hadamard Gate (H)</div>
+          <div class="ug-p">The Hadamard gate creates equal superposition. It's the most important gate in quantum
+            cryptography — it puts a qubit exactly "on the fence" between 0 and 1.</div>
+          <div class="ug-eq">$$H = \frac{1}{\sqrt{2}}\begin{pmatrix}1 & 1\\1 & -1\end{pmatrix}$$</div>
+          <div class="ug-eq">$$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |{+}\rangle, \qquad H|1\rangle =
+            \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |{-}\rangle$$</div>
+          <div class="ug-insight">Applying H twice returns to the original state: $H^2 = I$. The Hadamard gate is its
+            own inverse.</div>
+
+          <div class="ug-h3">Pauli-X Gate (X) — Quantum NOT</div>
+          <div class="ug-p">The X gate flips a qubit from $|0\rangle$ to $|1\rangle$ and vice versa — the quantum
+            equivalent of a classical NOT gate.</div>
+          <div class="ug-eq">$$X = \begin{pmatrix}0 & 1\\1 & 0\end{pmatrix}, \qquad X|0\rangle = |1\rangle, \qquad
+            X|1\rangle = |0\rangle$$</div>
+
+          <div class="ug-h3">Pauli-Z Gate (Z) — Phase Flip</div>
+          <div class="ug-p">The Z gate leaves $|0\rangle$ unchanged but adds a phase of $-1$ to $|1\rangle$. Invisible
+            in the computational basis, but critical for interference.</div>
+          <div class="ug-eq">$$Z = \begin{pmatrix}1 & 0\\0 & -1\end{pmatrix}, \qquad Z|0\rangle = |0\rangle, \qquad
+            Z|1\rangle = -|1\rangle$$</div>
+
+          <table class="ug-table">
+            <tr>
+              <th>Gate</th>
+              <th>Matrix</th>
+              <th>Effect on $|0\rangle$</th>
+              <th>Effect on $|1\rangle$</th>
+              <th>Role</th>
+            </tr>
+            <tr>
+              <td><strong>H</strong></td>
+              <td>$\frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$</td>
+              <td>$\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)$</td>
+              <td>$\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)$</td>
+              <td>Create superposition</td>
+            </tr>
+            <tr>
+              <td><strong>X</strong></td>
+              <td>$\begin{pmatrix}0&1\\1&0\end{pmatrix}$</td>
+              <td>$|1\rangle$</td>
+              <td>$|0\rangle$</td>
+              <td>Bit flip (NOT)</td>
+            </tr>
+            <tr>
+              <td><strong>Z</strong></td>
+              <td>$\begin{pmatrix}1&0\\0&-1\end{pmatrix}$</td>
+              <td>$|0\rangle$</td>
+              <td>$-|1\rangle$</td>
+              <td>Phase flip</td>
+            </tr>
+          </table>
+
+          <hr class="ug-divider">
+          <div class="ug-h2">E · Measurement & Wavefunction Collapse</div>
+          <div class="ug-p">When we measure a qubit, the superposition <em>collapses</em> irreversibly to one of the
+            basis states. The probability of each outcome is given by Born's rule:</div>
+          <div class="ug-eq">$$P(0) = |\alpha|^2, \qquad P(1) = |\beta|^2$$</div>
+          <div class="ug-p">After measuring and obtaining outcome $|0\rangle$, the state instantly becomes $|0\rangle$ —
+            all information about $\beta$ is destroyed. This is not a technical limitation; it is a fundamental law of
+            quantum mechanics.</div>
+          <table class="ug-table">
+            <tr>
+              <th>Expression</th>
+              <th>Meaning</th>
+            </tr>
+            <tr>
+              <td>$P(0) = |\alpha|^2$</td>
+              <td>Probability of collapsing to $|0\rangle$</td>
+            </tr>
+            <tr>
+              <td>$P(1) = |\beta|^2$</td>
+              <td>Probability of collapsing to $|1\rangle$</td>
+            </tr>
+            <tr>
+              <td>$|\alpha|^2 + |\beta|^2 = 1$</td>
+              <td>Probabilities must sum to 1 (normalization)</td>
+            </tr>
+            <tr>
+              <td>Post-measurement state</td>
+              <td>Either $|0\rangle$ or $|1\rangle$ — never both</td>
+            </tr>
+          </table>
+          <div class="ug-warn">⚠️ Measurement is the key to quantum security. An eavesdropper who measures a qubit
+            cannot put it back in the original superposition — her interference leaves a detectable trace.</div>
+        </div>
+
+        <!-- ══ SECTION F–G ══ -->
+        <div class="ug-sec" id="ug-s3">
+          <div class="ug-h1">F – G &nbsp;·&nbsp; Bloch Sphere & Entanglement</div>
+          <hr class="ug-divider">
+
+          <div class="ug-h2">F · Bloch Sphere Interpretation</div>
+          <div class="ug-p">Every possible pure qubit state can be mapped to a point on the surface of a unit sphere —
+            the <strong>Bloch sphere</strong>. The north pole is $|0\rangle$, the south pole is $|1\rangle$, and every
+            other point is a superposition.</div>
+          <div class="ug-eq">$$|\psi\rangle = \cos\!\left(\frac{\theta}{2}\right)|0\rangle \;+\;
+            e^{i\phi}\sin\!\left(\frac{\theta}{2}\right)|1\rangle$$</div>
+          <table class="ug-table">
+            <tr>
+              <th>Parameter</th>
+              <th>Range</th>
+              <th>Geometric meaning</th>
+            </tr>
+            <tr>
+              <td>$\theta$</td>
+              <td>$[0,\, \pi]$</td>
+              <td>Polar angle from north pole ($|0\rangle$)</td>
+            </tr>
+            <tr>
+              <td>$\phi$</td>
+              <td>$[0,\, 2\pi)$</td>
+              <td>Azimuthal angle — the relative phase</td>
+            </tr>
+            <tr>
+              <td>$\theta = 0$</td>
+              <td>North pole</td>
+              <td>State $|0\rangle$ — certain to measure 0</td>
+            </tr>
+            <tr>
+              <td>$\theta = \pi$</td>
+              <td>South pole</td>
+              <td>State $|1\rangle$ — certain to measure 1</td>
+            </tr>
+            <tr>
+              <td>$\theta = \pi/2,\, \phi = 0$</td>
+              <td>Equator (+x)</td>
+              <td>State $|{+}\rangle$ — equal superposition</td>
+            </tr>
+            <tr>
+              <td>$\theta = \pi/2,\, \phi = \pi$</td>
+              <td>Equator (−x)</td>
+              <td>State $|{-}\rangle$ — phase-flipped superposition</td>
+            </tr>
+          </table>
+          <div class="ug-grid2">
+            <div class="ug-card">
+              <div class="ug-h3">Gate Effects on Bloch Sphere</div>
+              <ul class="ug-ul">
+                <li><strong>X gate</strong> → $180°$ rotation about the x-axis</li>
+                <li><strong>Z gate</strong> → $180°$ rotation about the z-axis</li>
+                <li><strong>H gate</strong> → $180°$ rotation about the diagonal (x+z)/√2 axis</li>
+              </ul>
+            </div>
+            <div class="ug-card">
+              <div class="ug-h3">Why the Sphere?</div>
+              <div class="ug-p" style="font-size:11px;">Any global phase factor $e^{i\gamma}$ is physically
+                unobservable, so we only need two real parameters $\theta$ and $\phi$ to describe all physically
+                distinct pure states — exactly the two coordinates of a sphere's surface.</div>
+            </div>
+          </div>
+          <div class="ug-insight">The Bloch sphere is only valid for a single qubit. Entangled multi-qubit states
+            cannot be described this way — they live in a much higher-dimensional space.</div>
+
+          <hr class="ug-divider">
+          <div class="ug-h2">G · Quantum Entanglement</div>
+          <div class="ug-p">Entanglement is a quantum correlation with no classical analogue. When two qubits are
+            entangled, measuring one <em>instantly</em> determines the state of the other — regardless of the distance
+            between them. Einstein called this "spooky action at a distance."</div>
+
+          <div class="ug-h3">Separable vs Entangled States</div>
+          <div class="ug-p">A two-qubit state is <strong>separable</strong> if it can be written as a product of two
+            independent single-qubit states:</div>
+          <div class="ug-eq">$$|\psi_{\text{sep}}\rangle = |\psi_A\rangle \otimes |\psi_B\rangle = (\alpha_A|0\rangle +
+            \beta_A|1\rangle)(\alpha_B|0\rangle + \beta_B|1\rangle)$$</div>
+          <div class="ug-p">An <strong>entangled</strong> state cannot be written this way. For example, the Bell state:
+          </div>
+          <div class="ug-eq">$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) \neq |\psi_A\rangle \otimes
+            |\psi_B\rangle \quad \text{for any } |\psi_A\rangle, |\psi_B\rangle$$</div>
+
+          <table class="ug-table">
+            <tr>
+              <th>Property</th>
+              <th>Separable State</th>
+              <th>Entangled State</th>
+            </tr>
+            <tr>
+              <td>Factorizability</td>
+              <td>$|\psi_A\rangle \otimes |\psi_B\rangle$</td>
+              <td>Cannot be factored</td>
+            </tr>
+            <tr>
+              <td>Measurement correlation</td>
+              <td>Independent outcomes</td>
+              <td>Perfectly (anti-)correlated outcomes</td>
+            </tr>
+            <tr>
+              <td>After measuring qubit A</td>
+              <td>Qubit B unchanged</td>
+              <td>Qubit B instantly determined</td>
+            </tr>
+            <tr>
+              <td>Example</td>
+              <td>$|0\rangle \otimes |{+}\rangle$</td>
+              <td>$\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$</td>
+            </tr>
+          </table>
+          <div class="ug-insight">Entanglement is the resource that makes quantum teleportation and the E91
+            cryptographic protocol possible. It is the engine of quantum information science.</div>
+        </div>
+
+        <!-- ══ SECTION H ══ -->
+        <div class="ug-sec" id="ug-s4">
+          <div class="ug-h1">H &nbsp;·&nbsp; Bell States</div>
+          <hr class="ug-divider">
+          <div class="ug-p">The four Bell states (also called EPR pairs) are the maximally entangled two-qubit states.
+            They form an orthonormal basis for the two-qubit Hilbert space and are the fundamental building block of
+            quantum cryptography and teleportation.</div>
+
+          <div class="ug-h2">The Four Bell States</div>
+          <div class="ug-grid2">
+            <div class="ug-card">
+              <div class="ug-h3">$|\Phi^+\rangle$ — Phi Plus</div>
+              <div class="ug-eq">$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$</div>
+              <div style="font-size:11px;color:#90b0d0;">Measuring Alice as 0 → Bob is 0. Measuring Alice as 1 → Bob is
+                1. Perfect correlation.</div>
+            </div>
+            <div class="ug-card">
+              <div class="ug-h3">$|\Phi^-\rangle$ — Phi Minus</div>
+              <div class="ug-eq">$$|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$$</div>
+              <div style="font-size:11px;color:#90b0d0;">Same correlations as $|\Phi^+\rangle$ in the computational
+                basis, but opposite relative phase.</div>
+            </div>
+            <div class="ug-card">
+              <div class="ug-h3">$|\Psi^+\rangle$ — Psi Plus</div>
+              <div class="ug-eq">$$|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$$</div>
+              <div style="font-size:11px;color:#90b0d0;">Alice 0 → Bob 1. Alice 1 → Bob 0. Perfect anti-correlation.
+              </div>
+            </div>
+            <div class="ug-card">
+              <div class="ug-h3">$|\Psi^-\rangle$ — Psi Minus</div>
+              <div class="ug-eq">$$|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$$</div>
+              <div style="font-size:11px;color:#90b0d0;">Anti-correlated with phase flip. This state is rotationally
+                invariant — special in entanglement theory.</div>
+            </div>
+          </div>
+
+          <hr class="ug-divider">
+          <div class="ug-h2">Quantum Circuits — Complete Bell State Basis</div>
+          <div class="ug-p">Each Bell state is produced by a distinct two-qubit circuit. All start from $|00\rangle$.
+            The <span style="color:#e05252;font-weight:700;">H gate</span> creates superposition on $q_0$, the <span
+              style="color:#5b8dd9;font-weight:700;">CNOT</span> entangles both qubits, and optional <span
+              style="color:#52aacc;font-weight:700;">Z</span> / <span style="color:#5b8dd9;font-weight:700;">X</span>
+            gates on $q_1$ select the phase and correlation.</div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;">
+
+            <!-- ── Φ⁺ ── -->
+            <div class="ug-card" style="padding:14px 16px 10px;">
+              <div style="text-align:center;font-size:11.5px;font-weight:700;color:#e8f4ff;margin-bottom:8px;">
+                $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$</div>
+              <svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+                <!-- quantum wires -->
+                <line x1="44" y1="34" x2="278" y2="34" stroke="#bbb" stroke-width="1.6" />
+                <line x1="44" y1="72" x2="278" y2="72" stroke="#bbb" stroke-width="1.6" />
+                <!-- classical c double wire -->
+                <line x1="44" y1="118" x2="278" y2="118" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="122" x2="278" y2="122" stroke="#777" stroke-width="1.1" />
+                <!-- meas double wire -->
+                <line x1="44" y1="158" x2="278" y2="158" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="162" x2="278" y2="162" stroke="#777" stroke-width="1.1" />
+                <!-- row labels -->
+                <text x="2" y="38" fill="#ccc" font-size="11" font-style="italic" font-family="serif">q</text><text
+                  x="10" y="41" fill="#ccc" font-size="8" font-family="sans-serif">0</text>
+                <text x="2" y="76" fill="#ccc" font-size="11" font-style="italic" font-family="serif">q</text><text
+                  x="10" y="79" fill="#ccc" font-size="8" font-family="sans-serif">1</text>
+                <text x="10" y="122" fill="#999" font-size="10" font-family="sans-serif">c</text>
+                <text x="2" y="162" fill="#999" font-size="9" font-family="sans-serif">meas</text>
+                <!-- slash /2 on c -->
+                <line x1="50" y1="126" x2="58" y2="112" stroke="#777" stroke-width="1.1" />
+                <text x="59" y="111" fill="#777" font-size="8" font-family="sans-serif">2</text>
+                <!-- slash /2 on meas -->
+                <line x1="50" y1="166" x2="58" y2="152" stroke="#777" stroke-width="1.1" />
+                <text x="59" y="151" fill="#777" font-size="8" font-family="sans-serif">2</text>
+                <!-- H gate q0 -->
+                <rect x="62" y="22" width="28" height="24" rx="4" fill="#b03030" stroke="#e05050" stroke-width="1.5" />
+                <text x="76" y="39" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">H</text>
+                <!-- CNOT control -->
+                <circle cx="148" cy="34" r="5" fill="#2a5bc0" />
+                <line x1="148" y1="34" x2="148" y2="72" stroke="#2a5bc0" stroke-width="1.7" />
+                <!-- CNOT target ⊕ -->
+                <circle cx="148" cy="72" r="10" fill="none" stroke="#2a5bc0" stroke-width="1.9" />
+                <line x1="148" y1="62" x2="148" y2="82" stroke="#2a5bc0" stroke-width="1.7" />
+                <line x1="138" y1="72" x2="158" y2="72" stroke="#2a5bc0" stroke-width="1.7" />
+                <!-- measure q0 -->
+                <rect x="200" y="22" width="28" height="24" rx="3" fill="#3a3a55" stroke="#666" stroke-width="1.1" />
+                <path d="M206 42 Q214 30 222 42" fill="none" stroke="#aaa" stroke-width="1.1" />
+                <line x1="214" y1="42" x2="220" y2="34" stroke="#aaa" stroke-width="1.1" />
+                <!-- measure q1 -->
+                <rect x="200" y="60" width="28" height="24" rx="3" fill="#3a3a55" stroke="#666" stroke-width="1.1" />
+                <path d="M206 80 Q214 68 222 80" fill="none" stroke="#aaa" stroke-width="1.1" />
+                <line x1="214" y1="80" x2="220" y2="72" stroke="#aaa" stroke-width="1.1" />
+                <!-- drop arrow q0→c (bit 0) -->
+                <line x1="211" y1="46" x2="211" y2="116" stroke="#5588cc" stroke-width="1.1" stroke-dasharray="3,2" />
+                <polygon points="207,114 211,122 215,114" fill="#5588cc" />
+                <text x="214" y="108" fill="#888" font-size="8" font-family="sans-serif">0</text>
+                <!-- drop arrow q1→meas (bit 1) -->
+                <line x1="224" y1="84" x2="224" y2="155" stroke="#5588cc" stroke-width="1.1" stroke-dasharray="3,2" />
+                <polygon points="220,153 224,161 228,153" fill="#5588cc" />
+                <text x="227" y="147" fill="#888" font-size="8" font-family="sans-serif">1</text>
+              </svg>
+            </div>
+
+            <!-- ── Φ⁻ ── -->
+            <div class="ug-card" style="padding:14px 16px 10px;">
+              <div style="text-align:center;font-size:11.5px;font-weight:700;color:#e8f4ff;margin-bottom:8px;">
+                $|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$</div>
+              <svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+                <line x1="44" y1="34" x2="278" y2="34" stroke="#bbb" stroke-width="1.6" />
+                <line x1="44" y1="72" x2="278" y2="72" stroke="#bbb" stroke-width="1.6" />
+                <line x1="44" y1="118" x2="278" y2="118" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="122" x2="278" y2="122" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="158" x2="278" y2="158" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="162" x2="278" y2="162" stroke="#777" stroke-width="1.1" />
+                <text x="2" y="38" fill="#ccc" font-size="11" font-style="italic" font-family="serif">q</text><text
+                  x="10" y="41" fill="#ccc" font-size="8" font-family="sans-serif">0</text>
+                <text x="2" y="76" fill="#ccc" font-size="11" font-style="italic" font-family="serif">q</text><text
+                  x="10" y="79" fill="#ccc" font-size="8" font-family="sans-serif">1</text>
+                <text x="10" y="122" fill="#999" font-size="10" font-family="sans-serif">c</text>
+                <text x="2" y="162" fill="#999" font-size="9" font-family="sans-serif">meas</text>
+                <line x1="50" y1="126" x2="58" y2="112" stroke="#777" stroke-width="1.1" />
+                <text x="59" y="111" fill="#777" font-size="8" font-family="sans-serif">2</text>
+                <line x1="50" y1="166" x2="58" y2="152" stroke="#777" stroke-width="1.1" />
+                <text x="59" y="151" fill="#777" font-size="8" font-family="sans-serif">2</text>
+                <!-- H -->
+                <rect x="62" y="22" width="28" height="24" rx="4" fill="#b03030" stroke="#e05050" stroke-width="1.5" />
+                <text x="76" y="39" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">H</text>
+                <!-- CNOT -->
+                <circle cx="128" cy="34" r="5" fill="#2a5bc0" />
+                <line x1="128" y1="34" x2="128" y2="72" stroke="#2a5bc0" stroke-width="1.7" />
+                <circle cx="128" cy="72" r="10" fill="none" stroke="#2a5bc0" stroke-width="1.9" />
+                <line x1="128" y1="62" x2="128" y2="82" stroke="#2a5bc0" stroke-width="1.7" />
+                <line x1="118" y1="72" x2="138" y2="72" stroke="#2a5bc0" stroke-width="1.7" />
+                <!-- Z on q0 -->
+                <rect x="154" y="22" width="28" height="24" rx="4" fill="#1a7a9a" stroke="#2aaced" stroke-width="1.5" />
+                <text x="168" y="39" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">Z</text>
+                <!-- measure q0 -->
+                <rect x="200" y="22" width="28" height="24" rx="3" fill="#3a3a55" stroke="#666" stroke-width="1.1" />
+                <path d="M206 42 Q214 30 222 42" fill="none" stroke="#aaa" stroke-width="1.1" />
+                <line x1="214" y1="42" x2="220" y2="34" stroke="#aaa" stroke-width="1.1" />
+                <!-- measure q1 -->
+                <rect x="200" y="60" width="28" height="24" rx="3" fill="#3a3a55" stroke="#666" stroke-width="1.1" />
+                <path d="M206 80 Q214 68 222 80" fill="none" stroke="#aaa" stroke-width="1.1" />
+                <line x1="214" y1="80" x2="220" y2="72" stroke="#aaa" stroke-width="1.1" />
+                <!-- drop arrows -->
+                <line x1="211" y1="46" x2="211" y2="116" stroke="#5588cc" stroke-width="1.1" stroke-dasharray="3,2" />
+                <polygon points="207,114 211,122 215,114" fill="#5588cc" />
+                <text x="214" y="108" fill="#888" font-size="8" font-family="sans-serif">0</text>
+                <line x1="224" y1="84" x2="224" y2="155" stroke="#5588cc" stroke-width="1.1" stroke-dasharray="3,2" />
+                <polygon points="220,153 224,161 228,153" fill="#5588cc" />
+                <text x="227" y="147" fill="#888" font-size="8" font-family="sans-serif">1</text>
+              </svg>
+            </div>
+
+            <!-- ── Ψ⁺ ── -->
+            <div class="ug-card" style="padding:14px 16px 10px;">
+              <div style="text-align:center;font-size:11.5px;font-weight:700;color:#e8f4ff;margin-bottom:8px;">
+                $|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$</div>
+              <svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+                <line x1="44" y1="34" x2="278" y2="34" stroke="#bbb" stroke-width="1.6" />
+                <line x1="44" y1="72" x2="278" y2="72" stroke="#bbb" stroke-width="1.6" />
+                <line x1="44" y1="118" x2="278" y2="118" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="122" x2="278" y2="122" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="158" x2="278" y2="158" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="162" x2="278" y2="162" stroke="#777" stroke-width="1.1" />
+                <text x="2" y="38" fill="#ccc" font-size="11" font-style="italic" font-family="serif">q</text><text
+                  x="10" y="41" fill="#ccc" font-size="8" font-family="sans-serif">0</text>
+                <text x="2" y="76" fill="#ccc" font-size="11" font-style="italic" font-family="serif">q</text><text
+                  x="10" y="79" fill="#ccc" font-size="8" font-family="sans-serif">1</text>
+                <text x="10" y="122" fill="#999" font-size="10" font-family="sans-serif">c</text>
+                <text x="2" y="162" fill="#999" font-size="9" font-family="sans-serif">meas</text>
+                <line x1="50" y1="126" x2="58" y2="112" stroke="#777" stroke-width="1.1" />
+                <text x="59" y="111" fill="#777" font-size="8" font-family="sans-serif">2</text>
+                <line x1="50" y1="166" x2="58" y2="152" stroke="#777" stroke-width="1.1" />
+                <text x="59" y="151" fill="#777" font-size="8" font-family="sans-serif">2</text>
+                <!-- H -->
+                <rect x="62" y="22" width="28" height="24" rx="4" fill="#b03030" stroke="#e05050" stroke-width="1.5" />
+                <text x="76" y="39" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">H</text>
+                <!-- CNOT -->
+                <circle cx="128" cy="34" r="5" fill="#2a5bc0" />
+                <line x1="128" y1="34" x2="128" y2="72" stroke="#2a5bc0" stroke-width="1.7" />
+                <circle cx="128" cy="72" r="10" fill="none" stroke="#2a5bc0" stroke-width="1.9" />
+                <line x1="128" y1="62" x2="128" y2="82" stroke="#2a5bc0" stroke-width="1.7" />
+                <line x1="118" y1="72" x2="138" y2="72" stroke="#2a5bc0" stroke-width="1.7" />
+                <!-- X on q1 -->
+                <rect x="154" y="60" width="28" height="24" rx="4" fill="#2a4cb8" stroke="#4a6cf0" stroke-width="1.5" />
+                <text x="168" y="77" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">X</text>
+                <!-- measure q0 -->
+                <rect x="200" y="22" width="28" height="24" rx="3" fill="#3a3a55" stroke="#666" stroke-width="1.1" />
+                <path d="M206 42 Q214 30 222 42" fill="none" stroke="#aaa" stroke-width="1.1" />
+                <line x1="214" y1="42" x2="220" y2="34" stroke="#aaa" stroke-width="1.1" />
+                <!-- measure q1 -->
+                <rect x="200" y="60" width="28" height="24" rx="3" fill="#3a3a55" stroke="#666" stroke-width="1.1" />
+                <path d="M206 80 Q214 68 222 80" fill="none" stroke="#aaa" stroke-width="1.1" />
+                <line x1="214" y1="80" x2="220" y2="72" stroke="#aaa" stroke-width="1.1" />
+                <!-- drop arrows -->
+                <line x1="211" y1="46" x2="211" y2="116" stroke="#5588cc" stroke-width="1.1" stroke-dasharray="3,2" />
+                <polygon points="207,114 211,122 215,114" fill="#5588cc" />
+                <text x="214" y="108" fill="#888" font-size="8" font-family="sans-serif">0</text>
+                <line x1="224" y1="84" x2="224" y2="155" stroke="#5588cc" stroke-width="1.1" stroke-dasharray="3,2" />
+                <polygon points="220,153 224,161 228,153" fill="#5588cc" />
+                <text x="227" y="147" fill="#888" font-size="8" font-family="sans-serif">1</text>
+              </svg>
+            </div>
+
+            <!-- ── Ψ⁻ ── -->
+            <div class="ug-card" style="padding:14px 16px 10px;">
+              <div style="text-align:center;font-size:11.5px;font-weight:700;color:#e8f4ff;margin-bottom:8px;">
+                $|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$</div>
+              <svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+                <line x1="44" y1="34" x2="278" y2="34" stroke="#bbb" stroke-width="1.6" />
+                <line x1="44" y1="72" x2="278" y2="72" stroke="#bbb" stroke-width="1.6" />
+                <line x1="44" y1="118" x2="278" y2="118" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="122" x2="278" y2="122" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="158" x2="278" y2="158" stroke="#777" stroke-width="1.1" />
+                <line x1="44" y1="162" x2="278" y2="162" stroke="#777" stroke-width="1.1" />
+                <text x="2" y="38" fill="#ccc" font-size="11" font-style="italic" font-family="serif">q</text><text
+                  x="10" y="41" fill="#ccc" font-size="8" font-family="sans-serif">0</text>
+                <text x="2" y="76" fill="#ccc" font-size="11" font-style="italic" font-family="serif">q</text><text
+                  x="10" y="79" fill="#ccc" font-size="8" font-family="sans-serif">1</text>
+                <text x="10" y="122" fill="#999" font-size="10" font-family="sans-serif">c</text>
+                <text x="2" y="162" fill="#999" font-size="9" font-family="sans-serif">meas</text>
+                <line x1="50" y1="126" x2="58" y2="112" stroke="#777" stroke-width="1.1" />
+                <text x="59" y="111" fill="#777" font-size="8" font-family="sans-serif">2</text>
+                <line x1="50" y1="166" x2="58" y2="152" stroke="#777" stroke-width="1.1" />
+                <text x="59" y="151" fill="#777" font-size="8" font-family="sans-serif">2</text>
+                <!-- H -->
+                <rect x="62" y="22" width="28" height="24" rx="4" fill="#b03030" stroke="#e05050" stroke-width="1.5" />
+                <text x="76" y="39" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">H</text>
+                <!-- CNOT -->
+                <circle cx="118" cy="34" r="5" fill="#2a5bc0" />
+                <line x1="118" y1="34" x2="118" y2="72" stroke="#2a5bc0" stroke-width="1.7" />
+                <circle cx="118" cy="72" r="10" fill="none" stroke="#2a5bc0" stroke-width="1.9" />
+                <line x1="118" y1="62" x2="118" y2="82" stroke="#2a5bc0" stroke-width="1.7" />
+                <line x1="108" y1="72" x2="128" y2="72" stroke="#2a5bc0" stroke-width="1.7" />
+                <!-- Z on q0 -->
+                <rect x="140" y="22" width="28" height="24" rx="4" fill="#1a7a9a" stroke="#2aaced" stroke-width="1.5" />
+                <text x="154" y="39" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">Z</text>
+                <!-- X on q1 -->
+                <rect x="140" y="60" width="28" height="24" rx="4" fill="#2a4cb8" stroke="#4a6cf0" stroke-width="1.5" />
+                <text x="154" y="77" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">X</text>
+                <!-- measure q0 -->
+                <rect x="188" y="22" width="28" height="24" rx="3" fill="#3a3a55" stroke="#666" stroke-width="1.1" />
+                <path d="M194 42 Q202 30 210 42" fill="none" stroke="#aaa" stroke-width="1.1" />
+                <line x1="202" y1="42" x2="208" y2="34" stroke="#aaa" stroke-width="1.1" />
+                <!-- measure q1 -->
+                <rect x="188" y="60" width="28" height="24" rx="3" fill="#3a3a55" stroke="#666" stroke-width="1.1" />
+                <path d="M194 80 Q202 68 210 80" fill="none" stroke="#aaa" stroke-width="1.1" />
+                <line x1="202" y1="80" x2="208" y2="72" stroke="#aaa" stroke-width="1.1" />
+                <!-- drop arrows -->
+                <line x1="199" y1="46" x2="199" y2="116" stroke="#5588cc" stroke-width="1.1" stroke-dasharray="3,2" />
+                <polygon points="195,114 199,122 203,114" fill="#5588cc" />
+                <text x="202" y="108" fill="#888" font-size="8" font-family="sans-serif">0</text>
+                <line x1="212" y1="84" x2="212" y2="155" stroke="#5588cc" stroke-width="1.1" stroke-dasharray="3,2" />
+                <polygon points="208,153 212,161 216,153" fill="#5588cc" />
+                <text x="215" y="147" fill="#888" font-size="8" font-family="sans-serif">1</text>
+              </svg>
+            </div>
+
+          </div><!-- end circuit grid -->
+
+          <!-- Gate legend -->
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 16px;align-items:center;">
+            <span style="font-size:10px;color:#7090b0;font-weight:600;">Gate legend:</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;">
+              <svg width="26" height="20">
+                <rect x="1" y="2" width="24" height="16" rx="3" fill="#c0392b" stroke="#e74c3c" stroke-width="1.2" />
+                <text x="13" y="14" fill="#fff" font-size="10" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">H</text>
+              </svg>
+              <span style="font-size:10px;color:#a0b8d8;">Hadamard</span>
+            </span>
+            <span style="display:inline-flex;align-items:center;gap:5px;">
+              <svg width="26" height="20">
+                <circle cx="13" cy="6" r="4" fill="#3a7bd5" />
+                <line x1="13" y1="10" x2="13" y2="18" stroke="#3a7bd5" stroke-width="1.5" />
+                <circle cx="13" cy="15" r="5" fill="none" stroke="#3a7bd5" stroke-width="1.5" />
+                <line x1="8" y1="15" x2="18" y2="15" stroke="#3a7bd5" stroke-width="1.5" />
+              </svg>
+              <span style="font-size:10px;color:#a0b8d8;">CNOT (●⊕)</span>
+            </span>
+            <span style="display:inline-flex;align-items:center;gap:5px;">
+              <svg width="26" height="20">
+                <rect x="1" y="2" width="24" height="16" rx="3" fill="#1a7a9a" stroke="#2aaced" stroke-width="1.2" />
+                <text x="13" y="14" fill="#fff" font-size="10" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">Z</text>
+              </svg>
+              <span style="font-size:10px;color:#a0b8d8;">Phase flip</span>
+            </span>
+            <span style="display:inline-flex;align-items:center;gap:5px;">
+              <svg width="26" height="20">
+                <rect x="1" y="2" width="24" height="16" rx="3" fill="#3a5bd5" stroke="#5a7bf5" stroke-width="1.2" />
+                <text x="13" y="14" fill="#fff" font-size="10" font-weight="bold" text-anchor="middle"
+                  font-family="sans-serif">X</text>
+              </svg>
+              <span style="font-size:10px;color:#a0b8d8;">Bit flip (NOT)</span>
+            </span>
+            <span style="display:inline-flex;align-items:center;gap:5px;">
+              <svg width="26" height="20">
+                <rect x="1" y="2" width="24" height="16" rx="3" fill="#3a3a5a" stroke="#5a6a8a" stroke-width="1.2" />
+                <path d="M5 16 Q13 7 21 16" fill="none" stroke="#aaa" stroke-width="1.2" />
+                <line x1="13" y1="16" x2="18" y2="10" stroke="#aaa" stroke-width="1.2" />
+              </svg>
+              <span style="font-size:10px;color:#a0b8d8;">Measure</span>
+            </span>
+          </div>
+
+          <hr class="ug-divider">
+          <div class="ug-h2">Creating Bell States from $|00\rangle$</div>
+          <div class="ug-p">All four Bell states can be created by applying a Hadamard gate to the first qubit, then a
+            CNOT gate targeting the second qubit:</div>
+          <div class="ug-eq">$$|00\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|0\rangle
+            \xrightarrow{\text{CNOT}} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) = |\Phi^+\rangle$$</div>
+
+          <table class="ug-table">
+            <tr>
+              <th>Bell State</th>
+              <th>Formula</th>
+              <th>Correlation</th>
+              <th>Phase</th>
+              <th>Used in</th>
+            </tr>
+            <tr>
+              <td>$|\Phi^+\rangle$</td>
+              <td>$\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$</td>
+              <td>Correlated</td>
+              <td>$+$</td>
+              <td>E91, Teleportation</td>
+            </tr>
+            <tr>
+              <td>$|\Phi^-\rangle$</td>
+              <td>$\frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$</td>
+              <td>Correlated</td>
+              <td>$-$</td>
+              <td>Dense coding</td>
+            </tr>
+            <tr>
+              <td>$|\Psi^+\rangle$</td>
+              <td>$\frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$</td>
+              <td>Anti-correlated</td>
+              <td>$+$</td>
+              <td>Superdense coding</td>
+            </tr>
+            <tr>
+              <td>$|\Psi^-\rangle$</td>
+              <td>$\frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$</td>
+              <td>Anti-correlated</td>
+              <td>$-$</td>
+              <td>E91 (singlet state)</td>
+            </tr>
+          </table>
+          <div class="ug-insight">In this simulator, the E91 experiment distributes $|\Phi^+\rangle$ pairs. Alice and
+            Bob each receive one photon from each pair, measuring in random bases. Their correlated results become the
+            shared secret key.</div>
+        </div>
+
+        <!-- ══ SECTION I ══ -->
+        <div class="ug-sec" id="ug-s5">
+          <div class="ug-h1">I &nbsp;·&nbsp; BB84 Quantum Key Distribution</div>
+          <hr class="ug-divider">
+          <div class="ug-p">BB84 (Bennett & Brassard, 1984) was the world's first quantum cryptographic protocol. It
+            allows Alice and Bob to generate a shared secret key over an insecure channel, with security guaranteed by
+            the laws of quantum physics — not computational difficulty.</div>
+
+          <div class="ug-h2">The Four BB84 States</div>
+          <div class="ug-p">Alice encodes each key bit using one of four quantum states drawn from two conjugate bases:
+          </div>
+          <table class="ug-table">
+            <tr>
+              <th>Bit</th>
+              <th>Basis</th>
+              <th>State</th>
+              <th>Polarisation</th>
+            </tr>
+            <tr>
+              <td>$0$</td>
+              <td>Rectilinear $(+)$</td>
+              <td>$|0\rangle$</td>
+              <td>Horizontal ↔</td>
+            </tr>
+            <tr>
+              <td>$1$</td>
+              <td>Rectilinear $(+)$</td>
+              <td>$|1\rangle$</td>
+              <td>Vertical ↕</td>
+            </tr>
+            <tr>
+              <td>$0$</td>
+              <td>Diagonal $(\times)$</td>
+              <td>$|{+}\rangle = \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)$</td>
+              <td>Diagonal ↗</td>
+            </tr>
+            <tr>
+              <td>$1$</td>
+              <td>Diagonal $(\times)$</td>
+              <td>$|{-}\rangle = \frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)$</td>
+              <td>Anti-diagonal ↘</td>
+            </tr>
+          </table>
+
+          <div class="ug-h2">Four-Step Protocol</div>
+          <div class="ug-grid2">
+            <div class="ug-card">
+              <div class="ug-h3">Step 1 — Preparation & Transmission</div>
+              <div class="ug-p" style="font-size:11px;">Alice picks a random bit and a random basis for each photon. She
+                prepares and sends the photon in the corresponding state. Eve, if present, cannot copy it — the
+                <strong>no-cloning theorem</strong> forbids perfect quantum copying.
+              </div>
+            </div>
+            <div class="ug-card">
+              <div class="ug-h3">Step 2 — Bob's Measurement</div>
+              <div class="ug-p" style="font-size:11px;">Bob independently picks a random basis for each photon. If he
+                picks the same basis as Alice, he always gets the correct bit. If he picks a different basis, he gets a
+                random result — useless for the key.</div>
+            </div>
+            <div class="ug-card">
+              <div class="ug-h3">Step 3 — Basis Sifting</div>
+              <div class="ug-p" style="font-size:11px;">Alice and Bob publicly announce their basis choices (not the
+                bits!). They keep only the bits where their bases matched. On average, this is $\approx 50\%$ of all
+                transmitted bits.</div>
+              <div class="ug-eq" style="margin:6px 0;">$$\text{Key rate} \approx \frac{N}{2}$$</div>
+            </div>
+            <div class="ug-card">
+              <div class="ug-h3">Step 4 — Error Checking</div>
+              <div class="ug-p" style="font-size:11px;">They reveal a small sample of their sifted key bits and compute
+                the Quantum Bit Error Rate (QBER). If QBER exceeds the security threshold, they abort and try again.
+              </div>
+            </div>
+          </div>
+
+          <div class="ug-h2">QBER — Security Threshold</div>
+          <div class="ug-eq">$$\text{QBER} = \frac{\text{Number of errors}}{\text{Total sifted bits}} \times 100\%$$
+          </div>
+          <div class="ug-eq">$$\text{Secure if:} \quad \text{QBER} < 11\%$$</div>
+              <table class="ug-table">
+                <tr>
+                  <th>QBER Range</th>
+                  <th>Interpretation</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                  <td>$0\% - 5\%$</td>
+                  <td>Clean channel — no eavesdropping detected</td>
+                  <td><span class="ug-badge ug-b-green">Secure</span></td>
+                </tr>
+                <tr>
+                  <td>$5\% - 11\%$</td>
+                  <td>Possible noise or weak eavesdropping</td>
+                  <td><span class="ug-badge ug-b-amber">Caution</span></td>
+                </tr>
+                <tr>
+                  <td>$> 11\%$</td>
+                  <td>Eve almost certainly present — key compromised</td>
+                  <td><span class="ug-badge ug-b-red">Abort</span></td>
+                </tr>
+              </table>
+
+              <div class="ug-h2">Why Eve Gets Caught</div>
+              <div class="ug-p">When Eve intercepts a photon, she must measure it — but she doesn't know Alice's basis.
+                Half the time she picks the wrong basis, forcing the photon into a wrong state. When she re-sends it to
+                Bob, she introduces errors:</div>
+              <div class="ug-eq">$$P(\text{error from Eve}) = \frac{1}{4} \quad \Rightarrow \quad
+                \text{QBER}_{\text{Eve}} = 25\%$$</div>
+              <div class="ug-insight">Even a "perfect" eavesdropper following the laws of quantum mechanics will
+                introduce a QBER of 25% — well above the 11% threshold. She cannot hide.</div>
+          </div>
+
+          <!-- ══ SECTION J ══ -->
+          <div class="ug-sec" id="ug-s6">
+            <div class="ug-h1">J &nbsp;·&nbsp; E91 Protocol & Bell Inequality</div>
+            <hr class="ug-divider">
+            <div class="ug-p">The E91 protocol (Ekert, 1991) takes a fundamentally different approach from BB84. Instead
+              of Alice sending prepared photons to Bob, a <strong>central source</strong> distributes entangled photon
+              pairs — Alice and Bob each receive one photon from each pair. Security is certified not by error rates,
+              but by a direct test of quantum mechanics: the <strong>Bell inequality</strong>.</div>
+
+            <div class="ug-h2">Protocol Overview</div>
+            <div class="ug-grid2">
+              <div class="ug-card">
+                <div class="ug-h3">Step 1 — Entanglement Distribution</div>
+                <div class="ug-p" style="font-size:11px;">A source emits pairs of photons in the Bell state
+                  $|\Phi^+\rangle$. One photon flies to Alice, its entangled partner to Bob. Neither photon has a
+                  definite spin until measured.</div>
+                <div class="ug-eq" style="margin:6px 0;">$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle +
+                  |11\rangle)$$</div>
+              </div>
+              <div class="ug-card">
+                <div class="ug-h3">Step 2 — Independent Measurement</div>
+                <div class="ug-p" style="font-size:11px;">Alice and Bob each independently choose a random measurement
+                  direction (basis) for their photon. They never communicate their choices before measuring. The
+                  entanglement ensures their results are correlated even across arbitrary distances.</div>
+              </div>
+              <div class="ug-card">
+                <div class="ug-h3">Step 3 — Basis Sifting</div>
+                <div class="ug-p" style="font-size:11px;">They publicly compare which basis they used for each pair.
+                  Pairs where they chose matching bases give perfectly correlated bits — these become the secret key.
+                  Mismatched-basis results are used for the Bell test.</div>
+              </div>
+              <div class="ug-card">
+                <div class="ug-h3">Step 4 — Bell Test (Security Proof)</div>
+                <div class="ug-p" style="font-size:11px;">Using the mismatched-basis measurements, they compute the CHSH
+                  parameter $|S|$. A value above 2 confirms genuine quantum entanglement — and proves no eavesdropper
+                  could have pre-determined the key bits.</div>
+              </div>
+            </div>
+
+            <hr class="ug-divider">
+            <div class="ug-h2">The CHSH Bell Inequality</div>
+            <div class="ug-p">The Clauser–Horne–Shimony–Holt (CHSH) inequality tests whether nature is governed by local
+              hidden variables (classical physics) or quantum mechanics. Alice measures with settings $a$ or $a'$, Bob
+              with $b$ or $b'$. Each measurement result is $\pm 1$.</div>
+
+            <div class="ug-h3">Correlation Function</div>
+            <div class="ug-eq">$$E(a,b) = \langle \hat{A}_a \otimes \hat{B}_b \rangle = P(+,+\,|\,a,b) + P(-,-\,|\,a,b)
+              - P(+,-\,|\,a,b) - P(-,+\,|\,a,b)$$</div>
+
+            <div class="ug-h3">CHSH Parameter</div>
+            <div class="ug-eq">$$S = E(a,b) - E(a,b') + E(a',b) + E(a',b')$$</div>
+
+            <div class="ug-h3">The Inequality</div>
+            <div class="ug-eq">$$|S| \leq 2 \qquad \text{(classical / local hidden variable limit)}$$</div>
+            <div class="ug-eq">$$|S| \leq 2\sqrt{2} \approx 2.828 \qquad \text{(quantum maximum — Tsirelson's bound)}$$
+            </div>
+
+            <table class="ug-table">
+              <tr>
+                <th>$|S|$ Value</th>
+                <th>Physical Interpretation</th>
+                <th>Security Status</th>
+              </tr>
+              <tr>
+                <td>$|S| \leq 2$</td>
+                <td>Consistent with classical (local) physics — no entanglement proven</td>
+                <td><span class="ug-badge ug-b-red">Not quantum-secure</span></td>
+              </tr>
+              <tr>
+                <td>$2 < |S| \leq 2\sqrt{2}$</td>
+                <td>Violates Bell inequality — genuine quantum entanglement confirmed</td>
+                <td><span class="ug-badge ug-b-green">Quantum-secure</span></td>
+              </tr>
+              <tr>
+                <td>$|S| = 2\sqrt{2} \approx 2.828$</td>
+                <td>Tsirelson's bound — maximum quantum violation (ideal conditions)</td>
+                <td><span class="ug-badge ug-b-purple">Perfect entanglement</span></td>
+              </tr>
+              <tr>
+                <td>$|S| > 2\sqrt{2}$</td>
+                <td>Impossible — violates quantum mechanics itself</td>
+                <td><span class="ug-badge ug-b-amber">Error / noise</span></td>
+              </tr>
+            </table>
+
+            <div class="ug-h2">Optimal Measurement Angles</div>
+            <div class="ug-p">The maximum violation $|S| = 2\sqrt{2}$ is achieved at these measurement angles:</div>
+            <div class="ug-eq">$$a = 0°, \quad a' = 90°, \quad b = 45°, \quad b' = 135°$$</div>
+            <div class="ug-p">At these angles, the correlation between Alice and Bob's results is:</div>
+            <div class="ug-eq">$$E(a,b) = -\cos(b - a) = -\cos(45°) = -\frac{1}{\sqrt{2}}$$</div>
+
+            <div class="ug-h2">Why Bell Test = Security Proof</div>
+            <div class="ug-p">If an eavesdropper (Eve) had pre-determined the measurement outcomes using classical
+              hidden variables, she would be constrained by $|S| \leq 2$. The fact that Alice and Bob observe $|S| > 2$
+              proves:</div>
+            <ul class="ug-ul">
+              <li>The photons were genuinely entangled — not pre-programmed classical particles</li>
+              <li>No hidden variable (including Eve) could have predetermined the results</li>
+              <li>Eve cannot have a copy of the key bits — she would have disturbed the entanglement and reduced $|S|$
+                below 2</li>
+            </ul>
+            <div class="ug-insight">In this simulator, watch the $|S|$ value in the top-right corner during the E91
+              experiment. With Eve OFF and no noise, you will see $|S| \approx 2.66$–$2.82$. Turn Eve ON and observe
+              $|S|$ drop — the Bell inequality is violated less strongly, and the key is compromised.</div>
+
+            <hr class="ug-divider">
+            <div class="ug-h2">BB84 vs E91 — Comparison</div>
+            <table class="ug-table">
+              <tr>
+                <th>Feature</th>
+                <th>BB84</th>
+                <th>E91</th>
+              </tr>
+              <tr>
+                <td>Proposed</td>
+                <td>Bennett & Brassard, 1984</td>
+                <td>Ekert, 1991</td>
+              </tr>
+              <tr>
+                <td>Quantum resource</td>
+                <td>Single prepared photons</td>
+                <td>Entangled photon pairs</td>
+              </tr>
+              <tr>
+                <td>Key generation</td>
+                <td>Alice prepares states; Bob measures</td>
+                <td>Central source distributes pairs; both measure</td>
+              </tr>
+              <tr>
+                <td>Security proof</td>
+                <td>QBER $< 11\%$</td>
+                <td>Bell inequality $|S| > 2$</td>
+              </tr>
+              <tr>
+                <td>Eavesdropping detection</td>
+                <td>Basis mismatch errors</td>
+                <td>Reduction in Bell violation</td>
+              </tr>
+              <tr>
+                <td>Source trust required</td>
+                <td>Alice must trust her own source</td>
+                <td>Neither party needs to trust the source</td>
+              </tr>
+              <tr>
+                <td>Device-independence</td>
+                <td>No</td>
+                <td>Yes (in principle)</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- ══ QUICK REFERENCE ══ -->
+          <div class="ug-sec" id="ug-s7">
+            <div class="ug-h1">Quick Reference — All Key Equations</div>
+            <hr class="ug-divider">
+            <table class="ug-table">
+              <tr>
+                <th>#</th>
+                <th>Equation</th>
+                <th>Name</th>
+                <th>Meaning</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$</td>
+                <td>General qubit</td>
+                <td>Superposition of computational basis states</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>$|\alpha|^2 + |\beta|^2 = 1$</td>
+                <td>Normalization</td>
+                <td>Total probability must equal 1</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>$H = \frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$</td>
+                <td>Hadamard matrix</td>
+                <td>Creates equal superposition</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$</td>
+                <td>Hadamard on $|0\rangle$</td>
+                <td>Maps $|0\rangle$ to $|{+}\rangle$</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>$P(0) = |\alpha|^2,\; P(1) = |\beta|^2$</td>
+                <td>Born's rule</td>
+                <td>Measurement outcome probabilities</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>$|\psi\rangle = \cos\!\tfrac{\theta}{2}|0\rangle + e^{i\phi}\sin\!\tfrac{\theta}{2}|1\rangle$</td>
+                <td>Bloch parameterization</td>
+                <td>All pure qubit states on unit sphere</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$</td>
+                <td>Bell state Φ⁺</td>
+                <td>Maximally entangled correlated pair</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>$|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$</td>
+                <td>Bell state Φ⁻</td>
+                <td>Correlated with phase flip</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>$|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$</td>
+                <td>Bell state Ψ⁺</td>
+                <td>Maximally entangled anti-correlated</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>$|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$</td>
+                <td>Bell state Ψ⁻</td>
+                <td>Anti-correlated singlet state</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>$\text{QBER} = \frac{\text{errors}}{\text{sifted bits}} \times 100\%$</td>
+                <td>QBER</td>
+                <td>BB84 eavesdropping metric; secure if $< 11\%$</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>$S = E(a,b) - E(a,b') + E(a',b) + E(a',b')$</td>
+                <td>CHSH parameter</td>
+                <td>Bell inequality test value</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>$|S| \leq 2$</td>
+                <td>Classical bound</td>
+                <td>Any local hidden variable theory</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>$|S| \leq 2\sqrt{2} \approx 2.828$</td>
+                <td>Tsirelson's bound</td>
+                <td>Maximum quantum violation</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>$|S| > 2$</td>
+                <td>Quantum security criterion</td>
+                <td>Confirms entanglement — E91 key is secure</td>
+              </tr>
+            </table>
+
+            <hr class="ug-divider">
+            <div class="ug-h2">Glossary</div>
+            <table class="ug-table">
+              <tr>
+                <th>Term</th>
+                <th>Definition</th>
+              </tr>
+              <tr>
+                <td><strong>Qubit</strong></td>
+                <td>Quantum bit — unit vector in $\mathbb{C}^2$; can be in superposition of $|0\rangle$ and $|1\rangle$
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Superposition</strong></td>
+                <td>A linear combination of basis states; collapses to one state upon measurement</td>
+              </tr>
+              <tr>
+                <td><strong>Entanglement</strong></td>
+                <td>Non-separable correlation between two or more qubits; measurement of one instantly determines the
+                  other</td>
+              </tr>
+              <tr>
+                <td><strong>Basis</strong></td>
+                <td>A set of orthonormal states used for measurement (e.g. computational $\{|0\rangle, |1\rangle\}$ or
+                  diagonal $\{|{+}\rangle, |{-}\rangle\}$)</td>
+              </tr>
+              <tr>
+                <td><strong>Unitary gate</strong></td>
+                <td>A reversible quantum operation; $U^\dagger U = I$; preserves normalization</td>
+              </tr>
+              <tr>
+                <td><strong>No-cloning theorem</strong></td>
+                <td>It is impossible to perfectly copy an unknown quantum state — fundamental to quantum security</td>
+              </tr>
+              <tr>
+                <td><strong>QBER</strong></td>
+                <td>Quantum Bit Error Rate — fraction of sifted key bits that are wrong; BB84 security metric</td>
+              </tr>
+              <tr>
+                <td><strong>Bell inequality</strong></td>
+                <td>A bound on correlations in any classical (local hidden variable) theory; violated by quantum
+                  entanglement</td>
+              </tr>
+              <tr>
+                <td><strong>CHSH parameter $S$</strong></td>
+                <td>Specific form of Bell inequality; classically $|S|\leq 2$, quantum maximum $|S|=2\sqrt{2}$</td>
+              </tr>
+              <tr>
+                <td><strong>Tsirelson's bound</strong></td>
+                <td>The maximum possible violation of the CHSH inequality by any quantum state: $2\sqrt{2} \approx
+                  2.828$</td>
+              </tr>
+              <tr>
+                <td><strong>Sifting</strong></td>
+                <td>The step where Alice and Bob discard bits where they used different measurement bases</td>
+              </tr>
+              <tr>
+                <td><strong>One-time pad</strong></td>
+                <td>Encryption where each bit of plaintext is XORed with one bit of a random key of the same length;
+                  perfectly secure when key is truly random</td>
+              </tr>
+            </table>
+          </div>
+
+        </div><!-- end guide-body (moved closing tag) -->
+      </div><!-- end guide-panel -->
+    </div>
+
+    <!-- ═══════ REFERENCES PANEL ═══════ -->
+    <div class="panel" id="p-refs" style="background:#0f1c35;flex-direction:column;overflow:hidden;">
+      <div
+        style="background:#1a3060;border-bottom:2px solid #2a5090;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div
+            style="width:26px;height:26px;background:radial-gradient(circle,#63b3ed 30%,#1a5bbd 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;">
+          </div>
+          <span style="color:#fff;font-weight:700;font-size:13px;">References &amp; Citations</span>
+        </div>
+        <span style="color:#63b3ed;font-size:10px;font-weight:600;">Academic &amp; Research Sources</span>
+      </div>
+      <div id="refs-body"
+        style="flex:1;overflow-y:auto;padding:22px 32px;color:#c8daf0;font-size:11.5px;line-height:1.75;background:#0f1c35;">
+
+
+        <div style="font-size:19px;font-weight:800;color:#e8f4ff;margin-bottom:4px;">References</div>
+        <div style="color:#90b8e0;font-size:12px;margin-bottom:12px;">This simulator is grounded in established quantum
+          computing theory, cryptographic protocol research, and peer-reviewed academic literature. All sources are
+          publicly verifiable and suitable for citation in academic or hackathon submissions.</div>
+        <hr style="border:none;border-top:1px solid rgba(99,179,237,.15);margin:0 0 4px;">
+
+        <div class="rf-sec">Textbooks &amp; Academic Monographs</div>
+
+        <div class="rf-row">
+          <div class="rf-n">[1]</div>
+          <div>
+            <span class="rf-au">Nielsen, M. A., &amp; Chuang, I. L.</span><span class="rf-yr"> (2010).</span>
+            <span class="rf-ti">Quantum Computation and Quantum Information<span
+                class="rf-tag t-bk">Textbook</span></span>
+            <span class="rf-pub">Cambridge University Press. 10th Anniversary Edition. ISBN: 978-1-107-00217-3</span>
+            <span class="rf-url"><a href="https://www.cambridge.org/9781107002173"
+                target="_blank">cambridge.org/9781107002173</a> — The definitive reference for quantum gates, circuits,
+              entanglement, and QKD protocols.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[2]</div>
+          <div>
+            <span class="rf-au">Preskill, J.</span><span class="rf-yr"> (2021).</span>
+            <span class="rf-ti">Lecture Notes on Quantum Computation (Ph219/CS219)<span class="rf-tag t-bk">Lecture
+                Notes</span></span>
+            <span class="rf-pub">California Institute of Technology.</span>
+            <span class="rf-url"><a href="https://theory.caltech.edu/~preskill/ph219/"
+                target="_blank">theory.caltech.edu/~preskill/ph219</a> — Covers Bell inequalities, entanglement, and
+              quantum information theory in depth.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[3]</div>
+          <div>
+            <span class="rf-au">Wilde, M. M.</span><span class="rf-yr"> (2017).</span>
+            <span class="rf-ti">Quantum Information Theory<span class="rf-tag t-bk">Textbook</span></span>
+            <span class="rf-pub">Cambridge University Press. 2nd Edition. ISBN: 978-1-107-17616-4</span>
+            <span class="rf-url"><a href="https://arxiv.org/abs/1106.1445" target="_blank">arxiv.org/abs/1106.1445</a> —
+              Formal treatment of quantum channels, entropy, and cryptographic security proofs.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[4]</div>
+          <div>
+            <span class="rf-au">Mermin, N. D.</span><span class="rf-yr"> (2007).</span>
+            <span class="rf-ti">Quantum Computer Science: An Introduction<span
+                class="rf-tag t-bk">Textbook</span></span>
+            <span class="rf-pub">Cambridge University Press. ISBN: 978-0-521-87658-2</span>
+            <span class="rf-url"><a href="https://www.cambridge.org/9780521876582"
+                target="_blank">cambridge.org/9780521876582</a> — Accessible undergraduate-level introduction to quantum
+              algorithms and circuit models.</span>
+          </div>
+        </div>
+
+        <div class="rf-sec">🔬 Foundational Research Papers</div>
+
+        <div class="rf-row">
+          <div class="rf-n">[5]</div>
+          <div>
+            <span class="rf-au">Bennett, C. H., &amp; Brassard, G.</span><span class="rf-yr"> (1984).</span>
+            <span class="rf-ti">Quantum Cryptography: Public Key Distribution and Coin Tossing<span
+                class="rf-tag t-pp">BB84</span></span>
+            <span class="rf-pub"><em>Proceedings of IEEE International Conference on Computers, Systems and Signal
+                Processing</em>, Bangalore, pp. 175–179.</span>
+            <span class="rf-url"><a href="https://arxiv.org/abs/2003.06557" target="_blank">arxiv.org/abs/2003.06557</a>
+              — Original paper introducing the BB84 quantum key distribution protocol.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[6]</div>
+          <div>
+            <span class="rf-au">Ekert, A. K.</span><span class="rf-yr"> (1991).</span>
+            <span class="rf-ti">Quantum Cryptography Based on Bell's Theorem<span class="rf-tag t-pp">E91</span></span>
+            <span class="rf-pub"><em>Physical Review Letters</em>, 67(6), 661–663. DOI:
+              10.1103/PhysRevLett.67.661</span>
+            <span class="rf-url"><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.67.661"
+                target="_blank">doi.org/10.1103/PhysRevLett.67.661</a> — Foundational paper for entanglement-based QKD;
+              basis of the E91 experiment in this simulator.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[7]</div>
+          <div>
+            <span class="rf-au">Bell, J. S.</span><span class="rf-yr"> (1964).</span>
+            <span class="rf-ti">On the Einstein Podolsky Rosen Paradox<span class="rf-tag t-pp">Bell Test</span></span>
+            <span class="rf-pub"><em>Physics Physique Физика</em>, 1(3), 195–200. DOI:
+              10.1103/PhysicsPhysiqueFizika.1.195</span>
+            <span class="rf-url"><a href="https://journals.aps.org/ppf/abstract/10.1103/PhysicsPhysiqueFizika.1.195"
+                target="_blank">doi.org/10.1103/PhysicsPhysiqueFizika.1.195</a> — Introduced the Bell inequality;
+              theoretical basis for detecting entanglement and eavesdropping in E91.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[8]</div>
+          <div>
+            <span class="rf-au">Clauser, J. F., Horne, M. A., Shimony, A., &amp; Holt, R. A.</span><span class="rf-yr">
+              (1969).</span>
+            <span class="rf-ti">Proposed Experiment to Test Local Hidden-Variable Theories<span
+                class="rf-tag t-pp">CHSH</span></span>
+            <span class="rf-pub"><em>Physical Review Letters</em>, 23(15), 880–884. DOI:
+              10.1103/PhysRevLett.23.880</span>
+            <span class="rf-url"><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.23.880"
+                target="_blank">doi.org/10.1103/PhysRevLett.23.880</a> — Introduced the CHSH inequality |S| ≤ 2 used in
+              this simulator's Bell test computation.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[9]</div>
+          <div>
+            <span class="rf-au">Bennett, C. H., Brassard, G., Crépeau, C., Jozsa, R., Peres, A., &amp; Wootters, W.
+              K.</span><span class="rf-yr"> (1993).</span>
+            <span class="rf-ti">Teleporting an Unknown Quantum State via Dual Classical and EPR Channels<span
+                class="rf-tag t-pp">Teleportation</span></span>
+            <span class="rf-pub"><em>Physical Review Letters</em>, 70(13), 1895–1899. DOI:
+              10.1103/PhysRevLett.70.1895</span>
+            <span class="rf-url"><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.70.1895"
+                target="_blank">doi.org/10.1103/PhysRevLett.70.1895</a> — Original quantum teleportation protocol; basis
+              of the Teleportation experiment.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[10]</div>
+          <div>
+            <span class="rf-au">Wootters, W. K., &amp; Zurek, W. H.</span><span class="rf-yr"> (1982).</span>
+            <span class="rf-ti">A Single Quantum Cannot be Cloned<span class="rf-tag t-pp">No-Cloning</span></span>
+            <span class="rf-pub"><em>Nature</em>, 299, 802–803. DOI: 10.1038/299802a0</span>
+            <span class="rf-url"><a href="https://www.nature.com/articles/299802a0"
+                target="_blank">doi.org/10.1038/299802a0</a> — Proof of the no-cloning theorem; fundamental to the
+              security of all QKD protocols.</span>
+          </div>
+        </div>
+
+        <div class="rf-sec">🌐 Online Learning &amp; Development Resources</div>
+
+        <div class="rf-row">
+          <div class="rf-n">[11]</div>
+          <div>
+            <span class="rf-au">IBM Quantum.</span><span class="rf-yr"> (2024).</span>
+            <span class="rf-ti">IBM Quantum Learning<span class="rf-tag t-wb">Platform</span></span>
+            <span class="rf-pub">IBM Corporation.</span>
+            <span class="rf-url"><a href="https://quantum.ibm.com/learn" target="_blank">quantum.ibm.com/learn</a> —
+              Interactive courses, circuit composer, and Qiskit documentation.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[12]</div>
+          <div>
+            <span class="rf-au">Qiskit Community &amp; IBM Research.</span><span class="rf-yr"> (2024).</span>
+            <span class="rf-ti">Qiskit Textbook: Learn Quantum Computation Using Qiskit<span class="rf-tag t-wb">Open
+                Resource</span></span>
+            <span class="rf-pub">IBM / Qiskit Open-Source Project.</span>
+            <span class="rf-url"><a href="https://qiskit.org/learn" target="_blank">qiskit.org/learn</a> — Reference for
+              Bell state circuits, quantum gates, and measurement conventions.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[13]</div>
+          <div>
+            <span class="rf-au">Microsoft Azure Quantum.</span><span class="rf-yr"> (2024).</span>
+            <span class="rf-ti">Azure Quantum Documentation<span class="rf-tag t-wb">Platform</span></span>
+            <span class="rf-pub">Microsoft Corporation.</span>
+            <span class="rf-url"><a href="https://learn.microsoft.com/en-us/azure/quantum/"
+                target="_blank">learn.microsoft.com/azure/quantum</a> — Reference for quantum algorithm concepts and
+              circuit notation standards.</span>
+          </div>
+        </div>
+
+        <div class="rf-sec">🧠 Visualization &amp; Simulation Concepts</div>
+
+        <div class="rf-row">
+          <div class="rf-n">[14]</div>
+          <div>
+            <span class="rf-au">Bloch, F.</span><span class="rf-yr"> (1946).</span>
+            <span class="rf-ti">Nuclear Induction<span class="rf-tag t-st">Concept</span></span>
+            <span class="rf-pub"><em>Physical Review</em>, 70(7–8), 460–474. DOI: 10.1103/PhysRev.70.460</span>
+            <span class="rf-url">Origin of the Bloch sphere — geometric representation of single-qubit states used in
+              the Superposition experiment.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[15]</div>
+          <div>
+            <span class="rf-au">Tsirelson, B. S.</span><span class="rf-yr"> (1980).</span>
+            <span class="rf-ti">Quantum Generalizations of Bell's Inequality<span
+                class="rf-tag t-st">Concept</span></span>
+            <span class="rf-pub"><em>Letters in Mathematical Physics</em>, 4(2), 93–100. DOI: 10.1007/BF00417500</span>
+            <span class="rf-url">Established the quantum upper bound |S| ≤ 2√2 ≈ 2.828 — the Tsirelson bound displayed
+              in the E91 Bell test.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[16]</div>
+          <div>
+            <span class="rf-au">Dirac, P. A. M.</span><span class="rf-yr"> (1939).</span>
+            <span class="rf-ti">A New Notation for Quantum Mechanics<span class="rf-tag t-st">Notation</span></span>
+            <span class="rf-pub"><em>Mathematical Proceedings of the Cambridge Philosophical Society</em>, 35(3),
+              416–418.</span>
+            <span class="rf-url">Introduced bra-ket notation |ψ⟩, ⟨ψ| used throughout this guide and simulator.</span>
+          </div>
+        </div>
+
+        <div class="rf-row">
+          <div class="rf-n">[17]</div>
+          <div>
+            <span class="rf-au">Einstein, A., Podolsky, B., &amp; Rosen, N.</span><span class="rf-yr"> (1935).</span>
+            <span class="rf-ti">Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?<span
+                class="rf-tag t-st">Concept</span></span>
+            <span class="rf-pub"><em>Physical Review</em>, 47(10), 777–780. DOI: 10.1103/PhysRev.47.777</span>
+            <span class="rf-url"><a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777"
+                target="_blank">doi.org/10.1103/PhysRev.47.777</a> — The EPR paradox; conceptual foundation for quantum
+              entanglement and Bell states.</span>
+          </div>
+        </div>
+
+        <div class="rf-note">
+          <strong>Educational Disclaimer</strong><br>
+          All protocol implementations in this simulator are <strong>educational approximations</strong> designed for
+          conceptual understanding and interactive visualization. Cryptographic simulations use simplified parameters
+          (e.g. 3 representative entangled pairs, 64-bit visual windows) and are <em>not</em> suitable for real
+          security-critical systems. For production quantum cryptography, refer to <a
+            href="https://csrc.nist.gov/projects/post-quantum-cryptography" target="_blank">NIST Post-Quantum
+            Cryptography</a> and <a href="https://www.etsi.org/technologies/quantum-key-distribution"
+            target="_blank">ETSI QKD Standards</a>.
+        </div>
+      </div><!-- end refs-body -->
+    </div><!-- end p-refs -->
+
+    <!-- ═══════ ABOUT PANEL ═══════ -->
+    <div class="panel" id="p-about">
+      <div class="about-panel">
+        <div class="about-section">
+          <div style="text-align:center;margin-bottom:8px;">
+            <div style="font-size:40px;margin-bottom:8px;"></div>
+            <h2 style="font-size:24px;font-weight:800;color:#fff;margin-bottom:6px;">About Quantum Protocol And
+              Algorithm Simulator</h2>
+            <p style="font-size:12px;color:rgba(150,180,220,0.6);">An academic project by SRM Institute of Science &
+              Technology</p>
+          </div>
+
+          <div class="about-card">
+            <h3>Project Overview</h3>
+            <p>The Quantum Algorithm And Protocol Simulator is an interactive browser-based simulator designed to help
+              students understand
+              foundational quantum computing concepts through guided theory, visual simulations, and hands-on
+              experiments — without any installation required.</p>
+          </div>
+
+          <div class="about-card" style="border-left-color:#68d391;">
+            <h3 style="color:#68d391;">Institution</h3>
+            <p><strong style="color:#e8eef8;">SRM Institute of Science & Technology</strong><br>
+              Department of Electronics and Communication Engineering<br>
+              Kattankulathur, Chennai — Tamil Nadu, India</p>
+          </div>
+
+          <div class="about-card team-card">
+            <h3 class="team-title">Project Team</h3>
+
+            <div class="team-section">
+              <h3>Student Members</h3>
+              <div class="team-grid">
+                <div class="team-member">
+                  <strong>Somyasmith Mahapatra</strong>
+                  <span>RA2411004010761</span>
+                </div>
+
+                <div class="team-member">
+                  <strong>Elamukil Kumaresan</strong>
+                  <span>RA2411004010764</span>
+                </div>
+
+                <div class="team-member">
+                  <strong>Lokapradeep S</strong>
+                  <span>RA2411053010193</span>
+                </div>
+
+                <div class="team-member">
+                  <strong>Dhey Shah</strong>
+                  <span>RA2411026011021</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="team-section">
+              <h3>Project Mentor</h3>
+              <p>Dr. S. Dhanalakshmi</p>
+            </div>
+
+            <div class="team-section">
+              <h3>Project Coordinator</h3>
+              <p>Dr. S. S Gayathri</p>
+            </div>
+          </div>
+
+          <div class="about-card" style="border-left-color:#b794f4;">
+            <h3 style="color:#b794f4;">What's Included</h3>
+            <p>The lab covers: Quantum Basics (Superposition, Entanglement, Measurement), Quantum Protocols (BB84, E91),
+              Quantum Algorithms (Teleportation, No-Cloning), Circuit Simulation with Bloch Sphere visualization, and
+              MCQ-based assessments at multiple difficulty levels.</p>
+          </div>
+
+          <div class="about-card" style="border-left-color:#f6e05e;">
+            <h3 style="color:#f6e05e;">Disclaimer</h3>
+            <p>All simulations are educational approximations for conceptual understanding. They are not suitable for
+              real security-critical or production quantum systems. For production use, refer to NIST Post-Quantum
+              Cryptography standards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ FEEDBACK PANEL ═══════ -->
+    <div class="panel" id="p-feedback">
+      <div class="feedback-panel">
+        <div style="max-width:560px;margin:0 auto;">
+          <div style="text-align:center;margin-bottom:28px;">
+            <div style="font-size:36px;margin-bottom:8px;"></div>
+            <h2 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Share Your Feedback</h2>
+            <p style="font-size:12px;color:rgba(150,180,220,0.6);">Help us improve the Quantum Algorithm and Protocol
+              Simulator</p>
+          </div>
+          <div class="feedback-form">
+            <div>
+              <label class="fb-label">Your Name</label>
+              <input class="fb-input" type="text" placeholder="Enter your name" id="fb-name">
+            </div>
+            <div>
+              <label class="fb-label">Roll Number / Student ID</label>
+              <input class="fb-input" type="text" placeholder="e.g. RA2111003010001" id="fb-roll">
+            </div>
+            <div>
+              <label class="fb-label">Rate your experience</label>
+              <div style="display:flex;gap:10px;margin-top:4px;" id="fb-stars">
+                <span class="fb-star" onclick="fbRate(1)"
+                  style="font-size:24px;cursor:pointer;transition:transform 0.15s;">★</span>
+                <span class="fb-star" onclick="fbRate(2)"
+                  style="font-size:24px;cursor:pointer;transition:transform 0.15s;">★</span>
+                <span class="fb-star" onclick="fbRate(3)"
+                  style="font-size:24px;cursor:pointer;transition:transform 0.15s;">★</span>
+                <span class="fb-star" onclick="fbRate(4)"
+                  style="font-size:24px;cursor:pointer;transition:transform 0.15s;">★</span>
+                <span class="fb-star" onclick="fbRate(5)"
+                  style="font-size:24px;cursor:pointer;transition:transform 0.15s;">★</span>
+              </div>
+              <div id="fb-rating-val" style="font-size:11px;color:rgba(150,180,220,0.5);margin-top:4px;"></div>
+            </div>
+            <div>
+              <label class="fb-label">Which module did you use most?</label>
+              <select class="fb-input" id="fb-module" style="cursor:pointer;">
+                <option value="">Select a module...</option>
+                <option>Quantum Basics</option>
+                <option>Quantum Protocols (BB84)</option>
+                <option>Quantum Protocols (E91)</option>
+                <option>Quantum Algorithms</option>
+                <option>Circuit Simulator</option>
+              </select>
+            </div>
+            <div>
+              <label class="fb-label">Your Feedback</label>
+              <textarea class="fb-textarea" placeholder="Share your experience, suggestions, or report any issues..."
+                id="fb-text"></textarea>
+            </div>
+            <button class="fb-submit" onclick="submitFeedback()">Submit Feedback</button>
+            <div id="fb-success"
+              style="display:none;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.4);border-radius:8px;padding:12px 16px;font-size:12px;color:#68d391;text-align:center;">
+              Thank you! Your feedback has been recorded.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- HARDWARE SECTION -->
+    <section id="hardware" class="page-section hidden">
+      <div class="container">
+        <h1 class="title">Hardware Implementation</h1>
+        <p class="subtitle">Real-world implementation of BB84</p>
+
+        <!-- BB84 CARD -->
+        <div class="card" onclick="showSection('bb84')">
+          <h2>BB84 Protocol</h2>
+          <p>Hardware implementation of quantum key distribution using polarization encoding</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BB84 DETAIL SECTION -->
+    <section id="bb84" class="page-section hidden">
+      <div class="container">
+
+        <h1 class="title">BB84 Hardware Setup (Weak Coherent Pulse QKD)</h1>
+
+        <!-- FLOW -->
+        <div class="flow" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+          <div class="flow-box">Alice<br><span style="font-size:11px;color:rgba(200,220,255,0.7)">(Attenuated Laser & Polarization Encoder)</span></div>
+          <div class="arrow">→</div>
+          <div class="flow-box">Quantum Channel<br><span style="font-size:11px;color:rgba(200,220,255,0.7)">(Optical Fiber / Free Space)</span></div>
+          <div class="arrow">→</div>
+          <div class="flow-box">Bob<br><span style="font-size:11px;color:rgba(200,220,255,0.7)">(Polarization Analyzer & Photon Detector)</span></div>
+          <div class="arrow">→</div>
+          <div class="flow-box">Classical Channel<br><span style="font-size:11px;color:rgba(200,220,255,0.7)">(PC)</span></div>
+        </div>
+
+        <!-- COMPONENT VISUAL GRID -->
+        <div class="flow" style="margin-top:20px; gap:15px; flex-wrap:wrap; justify-content:center;">
+          <div class="flow-box" style="text-align:center;">🔴<br>Laser Source</div>
+          <div class="flow-box" style="text-align:center;">⚙️<br>Optic Attenuator</div>
+          <div class="flow-box" style="text-align:center;">🕶️<br>Pol. Encoder</div>
+          <div class="flow-box" style="text-align:center;">📡<br>Quantum Channel</div>
+          <div class="flow-box" style="text-align:center;">🔍<br>Pol. Analyzer</div>
+          <div class="flow-box" style="text-align:center;">💡<br>APD/SPAD Detector</div>
+        </div>
+
+        <!-- TABLE -->
+        <table class="hardware-table">
+          <tr>
+            <th>Component</th>
+            <th>Specification</th>
+            <th>Purpose</th>
+            <th>Estimated Cost Range</th>
+          </tr>
+          <tr>
+            <td>Laser Source</td>
+            <td>Attenuated laser diode</td>
+            <td>Generate weak pulses</td>
+            <td>₹500 – ₹2000</td>
+          </tr>
+          <tr>
+            <td>Optical Attenuator</td>
+            <td>Variable (dB control)</td>
+            <td>Reduce intensity</td>
+            <td>₹3000 – ₹10000</td>
+          </tr>
+          <tr>
+            <td>Polarization Encoder</td>
+            <td>Polarizers / waveplates</td>
+            <td>Encode qubits</td>
+            <td>₹2000 – ₹8000</td>
+          </tr>
+          <tr>
+            <td>Beam Splitter (PBS)</td>
+            <td>Polarizing</td>
+            <td>Basis selection</td>
+            <td>₹3000 – ₹10000</td>
+          </tr>
+          <tr>
+            <td>APD / SPAD Detector</td>
+            <td>Single-photon sensitive</td>
+            <td>Photon detection</td>
+            <td>₹20000 – ₹80000</td>
+          </tr>
+          <tr>
+            <td>Optical Fiber</td>
+            <td>Single-mode</td>
+            <td>Transmission</td>
+            <td>₹2000 – ₹5000</td>
+          </tr>
+          <tr>
+            <td>Controller</td>
+            <td>Arduino / FPGA</td>
+            <td>Timing & control</td>
+            <td>₹500 – ₹5000</td>
+          </tr>
+          <tr>
+            <td>PC / Laptop</td>
+            <td>-</td>
+            <td>Classical communication</td>
+            <td>Existing</td>
+          </tr>
+        </table>
+
+        <!-- TOTAL COST SUMMARY -->
+        <div style="background:linear-gradient(135deg,#f0fff8,#e8f8f0);border:1px solid rgba(39,174,96,0.3);border-radius:8px;padding:12px 14px;margin:15px 0;font-size:14px;font-weight:800;color:var(--mint);text-align:center;">
+          Estimated Total System Cost: ₹40,000 – ₹1,00,000
+        </div>
+
+        <!-- NOTE -->
+        <div class="note">
+          <strong>System Insights:</strong> Real BB84 requires true single-photon sources, but attenuated lasers are widely used in practical QKD systems (Weak Coherent Pulse / Decoy-state BB84) to prevent photon-number splitting (PNS) attacks.<br><br>
+          <strong>Limitation:</strong> Multi-photon pulses can introduce security vulnerabilities, mitigated using decoy-state techniques.<br><br>
+          <strong>Note:</strong><br>
+          • Cost varies significantly based on detector sensitivity and optical precision.<br>
+          • The single-photon detector (APD/SPAD) dominates the total system cost.
+        </div>
+
+        <!-- FUTURE -->
+        <div class="future">
+          <h3>Future Upgrades</h3>
+          <ul style="list-style: none; padding: 0; margin-top: 10px; display:flex; flex-direction:column; gap:8px;">
+            <li style="display:flex; align-items:center; gap:8px;">
+              <span style="color:#63b3ed;font-size:16px;">🚀</span> Decoy-state implementation
+            </li>
+            <li style="display:flex; align-items:center; gap:8px;">
+              <span style="color:#b794f4;font-size:16px;">⏱️</span> Superconducting Nanowire Single-Photon Detectors (SNSPD)
+            </li>
+            <li style="display:flex; align-items:center; gap:8px;">
+              <span style="color:#68d391;font-size:16px;">🛰️</span> Free-space satellite QKD link
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
