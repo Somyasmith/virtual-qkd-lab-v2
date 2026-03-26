@@ -235,7 +235,7 @@ const sfx = {
     }
   },
 
-  // Setup UI Integration
+  // Setup UI Integration (only mute button, no global click sounds)
   injectUI() {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => this._createButton());
@@ -243,20 +243,8 @@ const sfx = {
       this._createButton();
     }
 
-    // Global listener for generic click sounds on `.tab`, `.gate-btn`, buttons
-    document.addEventListener('click', (e) => {
-      this.init(); // Unlock AudioContext on first user interaction
-      
-      const target = e.target.closest('button, .tab, .gate-btn, .pol-btn, .qc-preset-btn, .expi, a');
-      if (target && target.id !== 'sfx-mute-btn') {
-        // Play subtle interaction sound
-        if (!target.disabled) {
-          const isTab = target.classList.contains('tab') || target.tagName === 'A' || target.classList.contains('vlab-tab-btn');
-          this.safePlay("gate", { volume: isTab ? 0.25 : 0.45 });
-        }
-      }
-    });
-
+    // REMOVED: Global click listener for UI sounds - now handled by soundManager
+    // Only initialize AudioContext on user interaction
     document.addEventListener('keydown', () => { this.init(); }, { once: true });
   },
 

@@ -44,6 +44,12 @@ document.querySelectorAll('.tab').forEach(t => {
       panel.classList.add('active');
       document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
     }
+
+    // Set simulation active state based on current panel
+    if (typeof soundManager !== 'undefined') {
+      soundManager.setSimulationActive(panelId === 'p-exp');
+    }
+
     if (panelId === 'p-exp') {
       setTimeout(() => { resizeCanvas(); buildLayout(); loadModule('basics'); }, 50);
     }
@@ -510,7 +516,7 @@ function loadBasics(type) {
   }
   else if (type === 'mcq') {
     setActiveVTab('vtab-mcq');
-    renderMCQLevel('easy');
+    renderMCQLevel('easy', 'basics');
   }
 }
 
@@ -554,12 +560,161 @@ const BASICS_MCQ = {
   ]
 };
 
+const TELEPORTATION_MCQ = {
+  easy: [
+    { q: 'Quantum teleportation transfers…', opts: ['Energy', 'Classical bits', 'Quantum state'], ans: 2 },
+    { q: 'Teleportation requires how many qubits?', opts: ['1', '2', '3'], ans: 2 },
+    { q: 'Who are the standard parties in teleportation?', opts: ['Alice & Bob', 'Eve & Charlie', 'Max & Planck'], ans: 0 },
+    { q: 'An entangled pair is also called…', opts: ['Bell pair', 'GHZ state', 'Cluster state'], ans: 0 },
+    { q: 'Teleportation needs classical communication of…', opts: ['1 bit', '2 bits', '3 bits'], ans: 1 },
+    { q: 'The original qubit after teleportation…', opts: ['Remains same', 'Is destroyed', 'Gets copied'], ans: 1 },
+    { q: 'Which gate is first applied in teleportation?', opts: ['CNOT', 'H', 'Z'], ans: 0 },
+    { q: 'Bell states are…', opts: ['Separable states', 'Entangled states', 'Classical states'], ans: 1 },
+    { q: 'Teleportation violates cloning theorem?', opts: ['Yes', 'No', 'Sometimes'], ans: 1 },
+    { q: 'Measurement result is sent via…', opts: ['Quantum channel', 'Classical channel', 'No channel'], ans: 1 }
+  ],
+
+  medium: [
+    { q: 'Initial entangled state used is…', opts: ['|00⟩', '|Φ+⟩', '|11⟩'], ans: 1 },
+    { q: 'CNOT in teleportation uses control as…', opts: ['Unknown qubit', 'Bob\'s qubit', 'Classical bit'], ans: 0 },
+    { q: 'Hadamard gate creates…', opts: ['Entanglement', 'Superposition', 'Measurement'], ans: 1 },
+    { q: 'After measurement, Bob\'s qubit is…', opts: ['Destroyed', 'Random', 'Conditionally correctable'], ans: 2 },
+    { q: 'If Alice measures 00, Bob applies…', opts: ['X', 'Z', 'Nothing'], ans: 2 },
+    { q: 'If Alice measures 01, Bob applies…', opts: ['X', 'Z', 'XZ'], ans: 0 },
+    { q: 'If Alice measures 10, Bob applies…', opts: ['X', 'Z', 'XZ'], ans: 1 },
+    { q: 'If Alice measures 11, Bob applies…', opts: ['XZ', 'X', 'Z'], ans: 0 },
+    { q: 'Teleportation uses how many classical bits?', opts: ['1', '2', '4'], ans: 1 },
+    { q: 'The protocol was proposed in…', opts: ['1993', '1984', '2001'], ans: 0 }
+  ],
+
+  hard: [
+    { q: 'Teleportation fidelity ideally equals…', opts: ['0.5', '1', '0'], ans: 1 },
+    { q: 'Bell measurement projects onto…', opts: ['Computational basis', 'Bell basis', 'Fourier basis'], ans: 1 },
+    { q: 'State |ψ⟩ = α|0⟩+β|1⟩ after teleportation becomes…', opts: ['α|1⟩+β|0⟩', 'Same state', 'Collapsed to |0⟩'], ans: 1 },
+    { q: 'Entanglement is consumed during teleportation?', opts: ['Yes', 'No', 'Optional'], ans: 0 },
+    { q: 'Without classical bits, teleportation…', opts: ['Still works', 'Fails', 'Becomes faster'], ans: 1 },
+    { q: 'Teleportation speed is limited by…', opts: ['Light speed', 'Quantum gates', 'Entanglement'], ans: 0 },
+    { q: 'Bell state |Φ+⟩ = ?', opts: ['(|00⟩+|11⟩)/√2', '(|01⟩+|10⟩)/√2', '|00⟩'], ans: 0 },
+    { q: 'Global phase affects teleportation?', opts: ['Yes', 'No', 'Sometimes'], ans: 1 },
+    { q: 'Teleportation circuit requires how many measurements?', opts: ['1', '2', '3'], ans: 1 },
+    { q: 'Quantum teleportation is used in…', opts: ['QKD', 'Quantum networks', 'Both'], ans: 2 }
+  ]
+};
+const SUPERPOSITION_MCQ = {
+  easy: [
+    { q: 'Superposition means a qubit can be…', opts: ['Only 0', 'Only 1', 'Both 0 and 1'], ans: 2 },
+    { q: 'General qubit state is…', opts: ['|0⟩+|1⟩', 'α|0⟩+β|1⟩', '|ψ⟩=1'], ans: 1 },
+    { q: 'Measurement of superposition gives…', opts: ['Both values', 'Random outcome', 'Always 0'], ans: 1 },
+    { q: 'Superposition collapses when…', opts: ['Applying gate', 'Measurement', 'Rotation'], ans: 1 },
+    { q: 'Which gate creates superposition?', opts: ['X', 'H', 'Z'], ans: 1 },
+    { q: '|+⟩ state equals…', opts: ['(|0⟩−|1⟩)/√2', '(|0⟩+|1⟩)/√2', '|1⟩'], ans: 1 },
+    { q: 'Probability of |0⟩ is given by…', opts: ['α', '|α|²', 'β'], ans: 1 },
+    { q: 'If α=1, β=0 → state is…', opts: ['|1⟩', '|0⟩', 'Superposition'], ans: 1 },
+    { q: 'Bloch sphere represents…', opts: ['Classical bits', 'Qubit states', 'Circuits'], ans: 1 },
+    { q: 'Equal superposition means…', opts: ['α=β', 'α=0', 'β=0'], ans: 0 }
+  ],
+
+  medium: [
+    { q: 'H|0⟩ = ?', opts: ['|0⟩', '|+⟩', '|−⟩'], ans: 1 },
+    { q: 'H|1⟩ = ?', opts: ['|+⟩', '|−⟩', '|1⟩'], ans: 1 },
+    { q: '|−⟩ state equals…', opts: ['(|0⟩+|1⟩)/√2', '(|0⟩−|1⟩)/√2', '|0⟩'], ans: 1 },
+    { q: 'θ in Bloch sphere controls…', opts: ['Phase', 'Amplitude ratio', 'Measurement'], ans: 1 },
+    { q: 'φ controls…', opts: ['Phase', 'Probability', 'Collapse'], ans: 0 },
+    { q: 'Normalization condition is…', opts: ['α+β=1', '|α|²+|β|²=1', 'αβ=1'], ans: 1 },
+    { q: 'Superposition exists until…', opts: ['Noise', 'Measurement', 'Rotation'], ans: 1 },
+    { q: 'Global phase affects measurement?', opts: ['Yes', 'No', 'Sometimes'], ans: 1 },
+    { q: 'Applying H twice gives…', opts: ['X', 'I', 'Z'], ans: 1 },
+    { q: 'Probability of |1⟩ is…', opts: ['|β|²', 'β', '|α|²'], ans: 0 }
+  ],
+
+  hard: [
+    { q: 'State after H on |+⟩ is…', opts: ['|0⟩', '|1⟩', '|+⟩'], ans: 0 },
+    { q: 'If θ=π, state is…', opts: ['|0⟩', '|1⟩', 'Superposition'], ans: 1 },
+    { q: 'Equator of Bloch sphere represents…', opts: ['Basis states', 'Equal superposition', 'Measurement'], ans: 1 },
+    { q: 'Relative phase affects…', opts: ['Probability', 'Interference', 'Normalization'], ans: 1 },
+    { q: 'State α|0⟩+β|1⟩ is valid if…', opts: ['Normalized', 'Measured', 'Real'], ans: 0 },
+    { q: 'Superposition is key for…', opts: ['Parallelism', 'Classical logic', 'Irreversibility'], ans: 0 },
+    { q: 'After measurement, state becomes…', opts: ['Same', 'Collapsed basis state', 'Mixed'], ans: 1 },
+    { q: 'Complex amplitudes allow…', opts: ['Phase interference', 'Noise', 'Decoherence'], ans: 0 },
+    { q: 'Bloch vector length is…', opts: ['1', '0', 'Variable'], ans: 0 },
+    { q: 'Superposition differs from mixture because…', opts: ['Has phase info', 'Same concept', 'No probabilities'], ans: 0 }
+  ]
+};
+const E91_MCQ = {
+  easy: [
+    { q: 'E91 protocol is based on…', opts: ['Superposition', 'Entanglement', 'Teleportation'], ans: 1 },
+    { q: 'Proposed by…', opts: ['Bennett', 'Ekert', 'Shor'], ans: 1 },
+    { q: 'E91 uses…', opts: ['Single qubits', 'Entangled pairs', 'Classical bits'], ans: 1 },
+    { q: 'Entangled particles are shared between…', opts: ['Alice & Bob', 'Alice & Eve', 'Bob & Eve'], ans: 0 },
+    { q: 'Measurement results are…', opts: ['Independent', 'Correlated', 'Random only'], ans: 1 },
+    { q: 'Security is based on…', opts: ['No-cloning', 'Bell inequality', 'Superposition'], ans: 1 },
+    { q: 'E91 detects eavesdropping using…', opts: ['Noise', 'Bell test', 'Measurement'], ans: 1 },
+    { q: 'If Eve interferes, correlations…', opts: ['Increase', 'Break', 'Stay same'], ans: 1 },
+    { q: 'E91 is a type of…', opts: ['Quantum computing', 'Quantum cryptography', 'Classical cryptography'], ans: 1 },
+    { q: 'Key is generated from…', opts: ['Measurement outcomes', 'Gates', 'Entanglement only'], ans: 0 }
+  ],
+
+  medium: [
+    { q: 'Bell inequality violation indicates…', opts: ['Classical system', 'Quantum entanglement', 'Noise'], ans: 1 },
+    { q: 'CHSH inequality limit is…', opts: ['2', '2√2', '3'], ans: 0 },
+    { q: 'Max quantum value is…', opts: ['2', '2√2', '4'], ans: 1 },
+    { q: 'E91 uses how many measurement bases?', opts: ['1', '2', '3'], ans: 2 },
+    { q: 'Correlation stronger than classical means…', opts: ['Secure', 'Broken', 'Noise'], ans: 0 },
+    { q: 'If Bell inequality not violated →', opts: ['Secure', 'Eavesdropping possible', 'Perfect'], ans: 1 },
+    { q: 'Entangled state commonly used is…', opts: ['|Φ+⟩', '|00⟩', '|01⟩'], ans: 0 },
+    { q: 'Measurement settings are…', opts: ['Fixed', 'Random', 'Ignored'], ans: 1 },
+    { q: 'Classical limit ensures…', opts: ['No entanglement', 'Entanglement', 'Teleportation'], ans: 0 },
+    { q: 'Key extraction uses…', opts: ['Matching bases', 'All data', 'Random bits'], ans: 0 }
+  ],
+
+  hard: [
+    { q: 'Tsirelson bound is…', opts: ['2', '2√2', '3'], ans: 1 },
+    { q: 'Bell violation proves…', opts: ['Local realism', 'Non-locality', 'Classical behavior'], ans: 1 },
+    { q: 'E91 security relies on…', opts: ['Mathematics only', 'Physics laws', 'Algorithms'], ans: 1 },
+    { q: 'If S ≤ 2 → system is…', opts: ['Quantum', 'Classical', 'Secure'], ans: 1 },
+    { q: 'If S > 2 → indicates…', opts: ['Noise', 'Entanglement', 'Error'], ans: 1 },
+    { q: 'E91 differs from BB84 because…', opts: ['Uses entanglement', 'Uses bits', 'Uses noise'], ans: 0 },
+    { q: 'Eve measuring causes…', opts: ['Bell violation increase', 'Correlation loss', 'Perfect key'], ans: 1 },
+    { q: 'Quantum correlations are…', opts: ['Local', 'Non-local', 'Deterministic'], ans: 1 },
+    { q: 'Measurement outcomes depend on…', opts: ['Hidden variables', 'Quantum states', 'Classical bits'], ans: 1 },
+    { q: 'E91 ensures security even with…', opts: ['Untrusted devices', 'Perfect devices only', 'No entanglement'], ans: 0 }
+  ]
+};
+
 let currentMCQLevel = 'easy';
 let currentMCQQuestions = [];
 
-function renderMCQLevel(level) {
+function getMCQData(type) {
+  if (type === 'teleportation') return TELEPORTATION_MCQ;
+  if (type === 'basics') return BASICS_MCQ;
+
+  if (ALGO_DATA && ALGO_DATA[type] && ALGO_DATA[type].mcq) {
+    const mcq = ALGO_DATA[type].mcq;
+    if (mcq.easy && mcq.medium && mcq.hard) {
+      return mcq;
+    }
+    if (Array.isArray(mcq)) {
+      return { easy: mcq, medium: mcq, hard: mcq };
+    }
+  }
+
+  if (PROTO_DATA && PROTO_DATA[type] && PROTO_DATA[type].mcq) {
+    const mcq = PROTO_DATA[type].mcq;
+    if (mcq.easy && mcq.medium && mcq.hard) {
+      return mcq;
+    }
+    if (Array.isArray(mcq)) {
+      return { easy: mcq, medium: mcq, hard: mcq };
+    }
+  }
+
+  return BASICS_MCQ;
+}
+
+function renderMCQLevel(level, type = 'basics') {
   currentMCQLevel = level;
-  const pool = BASICS_MCQ[level];
+  const mcqData = getMCQData(type);
+  const pool = mcqData[level] || [];
   // Pick 5 random questions
   currentMCQQuestions = [...pool].sort(() => 0.5 - Math.random()).slice(0, 5);
   const sub = document.getElementById('subContent');
@@ -579,15 +734,15 @@ function renderMCQLevel(level) {
   sub.innerHTML = `
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
       <span style="font-size:11px;font-weight:700;color:var(--td);">Difficulty:</span>
-      <button onclick="renderMCQLevel('easy')"   style="padding:5px 14px;border-radius:6px;border:1.5px solid ${level === 'easy' ? '#27ae60' : '"var(--bd)"'};background:${level === 'easy' ? '#27ae60' : '#fff'};color:${level === 'easy' ? '#fff' : 'var(--tm)'};font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;cursor:pointer;"> Easy</button>
-      <button onclick="renderMCQLevel('medium')" style="padding:5px 14px;border-radius:6px;border:1.5px solid ${level === 'medium' ? '#f39c12' : '"var(--bd)"'};background:${level === 'medium' ? '#f39c12' : '#fff'};color:${level === 'medium' ? '#fff' : 'var(--tm)'};font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;cursor:pointer;"> Medium</button>
-      <button onclick="renderMCQLevel('hard')"   style="padding:5px 14px;border-radius:6px;border:1.5px solid ${level === 'hard' ? '#e74c3c' : '"var(--bd)"'};background:${level === 'hard' ? '#e74c3c' : '#fff'};color:${level === 'hard' ? '#fff' : 'var(--tm)'};font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;cursor:pointer;"> Hard</button>
+      <button onclick="renderMCQLevel('easy', '${type}')"   style="padding:5px 14px;border-radius:6px;border:1.5px solid ${level === 'easy' ? '#27ae60' : '"var(--bd)"'};background:${level === 'easy' ? '#27ae60' : '#fff'};color:${level === 'easy' ? '#fff' : 'var(--tm)'};font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;cursor:pointer;"> Easy</button>
+      <button onclick="renderMCQLevel('medium', '${type}')" style="padding:5px 14px;border-radius:6px;border:1.5px solid ${level === 'medium' ? '#f39c12' : '"var(--bd)"'};background:${level === 'medium' ? '#f39c12' : '#fff'};color:${level === 'medium' ? '#fff' : 'var(--tm)'};font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;cursor:pointer;"> Medium</button>
+      <button onclick="renderMCQLevel('hard', '${type}')"   style="padding:5px 14px;border-radius:6px;border:1.5px solid ${level === 'hard' ? '#e74c3c' : '"var(--bd)"'};background:${level === 'hard' ? '#e74c3c' : '#fff'};color:${level === 'hard' ? '#fff' : 'var(--tm)'};font-family:'Poppins',sans-serif;font-size:10px;font-weight:700;cursor:pointer;"> Hard</button>
       <span style="font-size:10px;color:var(--tl);margin-left:4px;">5 random questions</span>
     </div>
     <div class="vlab-mcq-box" id="mcqBox">${qs}</div>
     <div style="display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap;">
       <button onclick="submitMCQ()" style="background:linear-gradient(135deg,var(--sky),#1a5bbd);color:#fff;border:none;border-radius:7px;padding:9px 22px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;cursor:pointer;"> Submit Test</button>
-      <button onclick="renderMCQLevel(currentMCQLevel)" style="background:#fff;border:1.5px solid var(--bd);border-radius:7px;padding:9px 22px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;color:var(--tm);cursor:pointer;"> Next Test</button>
+      <button onclick="renderMCQLevel(currentMCQLevel, '${type}')" style="background:#fff;border:1.5px solid var(--bd);border-radius:7px;padding:9px 22px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;color:var(--tm);cursor:pointer;"> Next Test</button>
     </div>
     <div id="mcqScore" style="display:none;margin-top:12px;padding:12px 16px;border-radius:10px;font-size:12px;font-weight:700;text-align:center;"></div>
   `;
@@ -739,15 +894,14 @@ function algoBasics(type) {
 function algoMCQ(type) {
   document.getElementById('atab-mcq') && setActiveVTab('atab-mcq');
   vlabTrackProgress('algo-mcq-' + type);
-  const info = ALGO_DATA[type];
-  const qs = info.mcq.map((item, i) => {
-    const id = `aq${type}${i}`;
-    const opts = item.opts.map((o, j) =>
-      `<div class="vlab-option" onclick="vlabCheck(this,'${id}',${j === item.ans})">${o}</div>`
-    ).join('');
-    return `<div class="vlab-question" id="${id}"><p>Q${i + 1}: ${item.q}</p>${opts}<div class="vlab-q-feedback"></div></div>`;
-  }).join('');
-  document.getElementById('subContent').innerHTML = `<div class="vlab-mcq-box">${qs}</div>`;
+
+  if (type === 'tele') {
+    // Use the advanced MCQ system for teleportation
+    renderMCQLevel('easy', 'teleportation');
+  } else {
+    // Use the 3-tier MCQ engine for algorithm MCQ as well
+    renderMCQLevel('easy', type);
+  }
 }
 
 function algoSim(type) {
@@ -884,15 +1038,7 @@ function protocolBasics(type) {
 function protocolMCQ(type) {
   document.getElementById('ptab-mcq') && setActiveVTab('ptab-mcq');
   vlabTrackProgress('proto-mcq-' + type);
-  const info = PROTO_DATA[type];
-  const qs = info.mcq.map((item, i) => {
-    const id = `pq${type}${i}`;
-    const opts = item.opts.map((o, j) =>
-      `<div class="vlab-option" onclick="vlabCheck(this,'${id}',${j === item.ans})">${o}</div>`
-    ).join('');
-    return `<div class="vlab-question" id="${id}"><p>Q${i + 1}: ${item.q}</p>${opts}<div class="vlab-q-feedback"></div></div>`;
-  }).join('');
-  document.getElementById('subContent').innerHTML = `<div class="vlab-mcq-box">${qs}</div>`;
+  renderMCQLevel('easy', type);
 }
 
 function protocolSim(type) {
@@ -1241,7 +1387,7 @@ function spawnPhoton() {
   const currentBobBasis = BASES[Math.floor(Math.random() * 2)];
 
   msgBitPtr++;
-  sfx.safePlay('photon', { volume: 0.3 }); // Distance effect (softer at start)
+  soundManager.playSound('photon', { volume: 0.3 }); // Distance effect (softer at start)
   const intercepted = Math.random() * 100 < noiseLevel;
   totalSent++;
   document.getElementById('statPh').textContent = totalSent;
@@ -1299,7 +1445,7 @@ function updatePhotons(dt) {
       }
       if (p.seg === 1) {
         // Crossed mid → approaching Bob polariser
-        sfx.safePlay('photon', { volume: 0.7, distort: p.intercepted }); // Distance effect + Eve distort
+        soundManager.playSound('photon', { volume: 0.7, distort: p.intercepted }); // Distance effect + Eve distort
         if (p.intercepted) addLog(` Eve intercepted #${p.id}!`, '#fc8181');
         setStep(2);
       }
@@ -1308,8 +1454,8 @@ function updatePhotons(dt) {
         bpolFlash = 0.5;
         bobFlash = 0.6;
         const match = p.bobBasis === p.aliceBasis;
-        if (match) sfx.safePlay('success', { volume: 1.0 }); 
-        else sfx.safePlay('error', { volume: 0.8, distort: noiseLevel > 0 });
+        if (match) soundManager.playSound('success', { volume: 1.0 }); 
+        else soundManager.playSound('error', { volume: 0.8, distort: noiseLevel > 0 });
         let keyBit = null;
         const cp = charProgress[p.charIdx];
         // Only process if this character still needs more bits
@@ -1325,8 +1471,8 @@ function updatePhotons(dt) {
             
             // Final Reward Moment
             if (Object.values(charProgress).every(c => c.decoded)) {
-              sfx.safePlay('success', { volume: 1.2 });
-              setTimeout(() => sfx.safePlay('run', { volume: 1.0 }), 120);
+              soundManager.playSound('success', { volume: 1.2 });
+              setTimeout(() => soundManager.playSound('run', { volume: 1.0 }), 120);
               const kb = document.getElementById('keyBitsDisp');
               if (kb) { kb.style.boxShadow = '0 0 20px var(--mint)'; setTimeout(() => kb.style.boxShadow = 'none', 1200); }
             }
@@ -1853,7 +1999,7 @@ function startSim() {
   const msg = (document.getElementById('msgIn').value || 'HELLO').toUpperCase().replace(/[^A-Z]/g, '');
   if (!msg) { document.getElementById('msgErr').classList.add('show'); return; }
   simRunning = true; simElapsed = 0; photonTimer = PHOTON_INTERVAL - 0.1;
-  sfx.safePlay('run', { volume: 0.8 });
+  soundManager.playSound('run', { volume: 0.8 });
   totalSent = 0; siftData = []; qberHistory = []; keyHistory = []; keyBits = [];
   photons = []; sparks = []; logLines = []; currentStep = 0;
   const safeSet = (id, prop, val) => { const el = document.getElementById(id); if (el) el[prop] = val; };
@@ -1885,7 +2031,7 @@ function startSim() {
 
 function stopSim(silent) {
   simRunning = false;
-  sfx.safePlay('reset', { volume: 0.6 });
+  soundManager.playSound('reset', { volume: 0.6 });
   const safeSet = (id, prop, val) => { const el = document.getElementById(id); if (el) el[prop] = val; };
   safeSet('runBtn', 'textContent', '▶ Run Experiment');
   document.getElementById('runBtn')?.classList.remove('stop');
@@ -2523,7 +2669,7 @@ function setBtnStatesTele() {
 function teleEntangle() {
   if (teleState.step !== 0) return;
   teleState.step = 1;
-  sfx.safePlay('photon', { volume: 0.6 });
+  soundManager.playSound('photon', { volume: 0.6 });
   setBtnStatesTele();
   const { srcX, cy, aliceX, bobX } = getTeleDims();
   teleState.entangleTween = {
@@ -2585,7 +2731,7 @@ function teleApplyGate(g) {
       // Eve corrupted — Bob applied wrong gate unknowingly
       teleState.showSuccessBanner = false;
       teleState.photonDecohered = true;
-      sfx.safePlay('error', { volume: 0.9, distort: teleState.eveMode === 'active' });
+      soundManager.playSound('error', { volume: 0.9, distort: teleState.eveMode === 'active' });
       teleState.photons.A.color = '#ff4444';
       spawnBurst(teleState.photons.A.x, teleState.photons.A.y, '#ff4444', 25);
       const eveMsg = document.getElementById('eveResultMsg');
@@ -2600,7 +2746,7 @@ function teleApplyGate(g) {
     } else {
       teleState.labelChanged = true;
       teleState.showSuccessBanner = true;
-      sfx.safePlay('success', { volume: 1.0 });
+      soundManager.playSound('success', { volume: 1.0 });
       spawnBurst(teleState.photons.A.x, teleState.photons.A.y, '#27ae60', 30);
       spawnBurst(teleState.photons.A.x, teleState.photons.A.y, '#ffd700', 15);
       if (msgEl) { msgEl.textContent = ' State Successfully Reconstructed!'; msgEl.style.color = 'var(--mint)'; }
@@ -2615,7 +2761,7 @@ function teleApplyGate(g) {
     if (btn) { btn.className = 'tele-gate-btn wrong'; setTimeout(() => btn.className = 'tele-gate-btn', 500); }
     if (msgEl) { msgEl.textContent = ' Wrong gate — state briefly decoheres! Try again.'; msgEl.style.color = 'var(--coral)'; }
     // Brief decoherence flash on wrong gate
-    sfx.safePlay('error', { volume: 0.9 });
+    soundManager.playSound('error', { volume: 0.9 });
     const prevColor = teleState.photons.A.color;
     teleState.photons.A.color = '#ff4444';
     spawnBurst(teleState.photons.A.x, teleState.photons.A.y, '#ff4444', 15);
@@ -5560,9 +5706,7 @@ function qcPlaceGateAtIndex(insIdx) {
   const gc = document.getElementById('qcGateCount');
   if (gc) gc.textContent = qcGates.length;
   // Sound on placing gates (click-to-place)
-  if (typeof sfx !== 'undefined' && sfx && typeof sfx.safePlay === 'function') {
-    sfx.safePlay('gate', { volume: 0.45 });
-  }
+  soundManager.playSound('gate', { volume: 0.45 });
   qcHideGhostGatePreview();
 }
 
@@ -5819,9 +5963,7 @@ function qcDropGate(event) {
   if (gc) gc.textContent = qcGates.length;
 
   // Sound on placing gates (drag-to-place)
-  if (typeof sfx !== 'undefined' && sfx && typeof sfx.safePlay === 'function') {
-    sfx.safePlay('gate', { volume: 0.45 });
-  }
+  soundManager.playSound('gate', { volume: 0.45 });
 
   qcHideGhostGatePreview();
   qcDraggedGate = null;
@@ -5830,7 +5972,7 @@ function qcDropGate(event) {
 // ── RUN / STEP / CLEAR ─────────────────────────
 function qcRunCircuit() {
   qcResetState();
-  sfx.safePlay('run', { volume: 0.8 });
+  soundManager.playSound('run', { volume: 0.8 });
   qcJourney = [{ name: '|0⟩', lbl: 'North pole', type: 'zero', gate: null }];
   const mEl = document.getElementById('qcMeasResult');
   if (mEl) mEl.style.display = 'none';
@@ -5910,7 +6052,7 @@ function qcStepCircuit() {
 function qcClearCircuit() {
   qcGates = []; qcStepGateIdx = 0; qcMeasurements = 0;
   qcHideGhostGatePreview();
-  sfx.safePlay('reset', { volume: 0.6 });
+  soundManager.playSound('reset', { volume: 0.6 });
   qcRenderWire();
   qcResetState();
   qcUpdateViz();
